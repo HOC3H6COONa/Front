@@ -1,0 +1,10 @@
+.userPhoto{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 20px
+}
+.users{
+    padding-top: 20px;
+    padding-left: 20px;
+}
