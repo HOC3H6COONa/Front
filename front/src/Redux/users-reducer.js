@@ -4,14 +4,15 @@ const SET_USERS = 'SET_USERS'
 
 let InitialState ={
     users: [
-        {id:1, photourl: 'https://shikimori.one/system/characters/original/87275.jpg',
+        {id:null,image:null,name:null,gender:null,age:null},
+/*        {id:1, photourl: 'https://shikimori.one/system/characters/original/87275.jpg',
             followed: true, fullName: 'Artem', gender:'Male',age:'21',city: 'Moscow'},
         {id:2, photourl: 'https://shikimori.one/system/characters/original/87275.jpg',
             followed: false, fullName: 'Ivan', gender:'Male',age:'21',city: 'Karabanovo'},
         {id:3, photourl: 'https://shikimori.one/system/characters/original/87275.jpg',
             followed: true, fullName: 'Dima', gender:'Male',age:'21',city: 'Moscow'},
         {id:4, photourl: 'https://shikimori.one/system/characters/original/87275.jpg',
-            followed: false, fullName: 'Kaneki Ken', gender:'Male',age:'17', city: 'Tokyo'},
+            followed: false, fullName: 'Kaneki Ken', gender:'Male',age:'17', city: 'Tokyo'},*/
     ]
 }
 
@@ -41,7 +42,7 @@ export const UsersReducer = (state = InitialState, action) =>{
             }
 
         case  SET_USERS: {
-            return{...state, users: [...state.users, ...action.users] }
+            return{...state, users: action.users }
         }
 
         default:

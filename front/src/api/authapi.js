@@ -9,7 +9,6 @@ export const AuthApi = {
     getAuth(){
         return instance.get('auth/me')
             .then(response =>{
-                debugger;
                 return response.data;
             });
     }

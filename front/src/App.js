@@ -4,10 +4,10 @@ import {BrowserRouter, Route,Routes} from "react-router-dom";
 import Map from "./Components/Map/Map";
 import Nav from "./Components/Nav/Nav";
 import EditProfileContainer from "./Components/Profile/EditProfile/EditProfileContainer";
-import UsersContainer from "./Components/Users/UsersContainer";
 import ActivitiesContainer from "./Components/Activities/ActivitiesContainer";
 import ProfileContainer from "./Components/Profile/ProfileContainer";
 import HeaderContainer from "./Components/Header/HeaderContainer";
+import UsersContainer from "./Components/Users/UsersContainer";
 
 
 function App(props) {
