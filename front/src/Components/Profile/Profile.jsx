@@ -16,10 +16,9 @@ const Profile = (props) => {
             <div>
                 <img src={props.profile.image} className={classes.img}/>
                 <div className={classes.text}> Имя: {props.profile.name}</div>
-                {/*        <div className={classes.text}> Пол: {props.profile.gender} </div>
-        <div className={classes.text}> Возраст: {props.profile.age} </div>
-        <div className={classes.text}> Город: {props.profile.city} </div>*/}
-                <div className={classes.profile}>
+                <div className={classes.text}> Пол: {props.profile.gender} </div>
+                <div className={classes.text}> Возраст: {props.profile.age} </div>
+            <div className={classes.profile}>
                     <NavLink to={'/EditProfile'}>
                         <button className={classes.button}>Edit Profile</button>
                     </NavLink>
