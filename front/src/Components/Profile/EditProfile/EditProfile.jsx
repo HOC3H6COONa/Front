@@ -40,13 +40,13 @@ const EditProfile =(props) =>{
             <img className={classes.img} src={props.state.url}/>
             <div className={classes.profile}>
                 <div className={classes.textarea}> URL: {props.state.url}</div>
-                <textarea className={classes.textarea} onChange={onNameChange} ref={newNameElement}
+                <input className={classes.textarea} onChange={onNameChange} ref={newNameElement}
                           value={props.state.EditNameText}/>
-                <textarea className={classes.textarea} onChange={onGenderChange} ref={newGenderElement}
+                <input className={classes.textarea} onChange={onGenderChange} ref={newGenderElement}
                           value={props.state.EditGenderText}/>
-                <textarea className={classes.textarea} onChange={onAgeChange} ref={newAgeElement}
+                <input className={classes.textarea} onChange={onAgeChange} ref={newAgeElement}
                           value={props.state.EditAgeText}/>
-                <textarea className={classes.textarea} onChange={onCityChange} ref={newCityElement}
+                <input className={classes.textarea} onChange={onCityChange} ref={newCityElement}
                           value={props.state.EditCityText}/>
                 <div className={classes.profile2}>
                     <NavLink to={'/profile'}>
