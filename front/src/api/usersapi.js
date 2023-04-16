@@ -9,7 +9,6 @@ export const UsersApi = {
     getUsers(){
         return instance.get('profile/'+'all')
             .then(response =>{
-                debugger;
                 return response.data;
             });
     }

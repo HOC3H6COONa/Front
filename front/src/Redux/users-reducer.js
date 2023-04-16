@@ -1,3 +1,5 @@
+import {UsersApi} from "../api/usersapi";
+
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET_USERS'
@@ -54,3 +56,11 @@ export const Follow = (userId) => ({type: FOLLOW, userId })
 export const unfollow = (userId) => ({type: UNFOLLOW, userId})
 export const setUsers = (users) => ({type: SET_USERS, users })
 
+export const getUsersThunkCreator = () => {
+    return (dispatch) => {
+        UsersApi.getUsers()
+            .then(data => {
+                dispatch.setUsers(data);
+            });
+    }
+}

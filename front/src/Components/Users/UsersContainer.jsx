@@ -1,7 +1,7 @@
 import React from 'react';
 import Users from "./Users";
 import {connect} from "react-redux";
-import {Follow, setUsers, unfollow} from "../../Redux/users-reducer";
+import {Follow, getUsersThunkCreator, setUsers, unfollow} from "../../Redux/users-reducer";
 import {UsersApi} from "../../api/usersapi";
 
 
@@ -9,10 +9,11 @@ import {UsersApi} from "../../api/usersapi";
 class UsersContainer extends React.Component {
 
     componentDidMount() {
-        UsersApi.getUsers()
+        this.props.getUsersThunkCreator();
+/*        UsersApi.getUsers()
             .then(data => {
                 this.props.setUsers(data);
-            });
+            });*/
     }
 
     render(){
@@ -33,5 +34,6 @@ let mapStateToProps = (state) =>{
 export default connect(mapStateToProps,{
     Follow,
     unfollow,
-    setUsers
+    setUsers,
+    getUsersThunkCreator
 }) (UsersContainer);

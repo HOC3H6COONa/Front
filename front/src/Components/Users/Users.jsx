@@ -3,7 +3,6 @@ import styles from './users.module.css'
 import {NavLink} from "react-router-dom";
 
 const Users = (props) => {
-        debugger;
         return (
             <div className={styles.users}>
                 {props.users.map(u => <div key={u.id}>
