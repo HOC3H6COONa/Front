@@ -60,7 +60,7 @@ export const getUsersThunkCreator = () => {
     return (dispatch) => {
         UsersApi.getUsers()
             .then(data => {
-                dispatch.setUsers(data);
+                dispatch(setUsers(data));
             });
     }
 }
