@@ -1,0 +1,26 @@
+.AppHeader{
+    grid-area: header;
+    background-color: Black;
+}
+
+.AppHeader img{
+    width: 60px;
+}
+.item {
+    color: white;
+    text-shadow: 1px 1px 2px black;
+    font-size: 40px;
+    text-decoration: none;
+    padding: 20px;
+}
+
+.loginBlock{
+    float: right;
+    color: white;
+    text-shadow: 1px 1px 2px black;
+    font-size: 30px;
+    padding-top: 4px;
+    padding-right: 10px;
+    text-decoration: none;
+}
+
