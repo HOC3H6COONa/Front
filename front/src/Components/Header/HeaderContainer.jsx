@@ -7,7 +7,6 @@ import {AuthApi} from "../../api/authapi";
 
 
 
-
 class HeaderContainer extends React.Component {
 
     componentDidMount() {

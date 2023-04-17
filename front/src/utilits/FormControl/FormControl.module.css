@@ -1,0 +1,13 @@
+
+.formControl{
+
+}
+
+.error
+{
+    border: solid red 2px;
+}
+.errorSpan{
+    color: red;
+    padding-left: 10px;
+}

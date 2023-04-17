@@ -1,6 +1,6 @@
 import React from 'react'
 import './App.css';
-import {BrowserRouter, Route,Routes} from "react-router-dom";
+import {BrowserRouter, Route, Routes } from "react-router-dom";
 import Map from "./Components/Map/Map";
 import Nav from "./Components/Nav/Nav";
 import EditProfileContainer from "./Components/Profile/EditProfile/EditProfileContainer";
@@ -8,6 +8,7 @@ import ActivitiesContainer from "./Components/Activities/ActivitiesContainer";
 import ProfileContainer from "./Components/Profile/ProfileContainer";
 import HeaderContainer from "./Components/Header/HeaderContainer";
 import UsersContainer from "./Components/Users/UsersContainer";
+import Login from "./Components/Login/Login";
 
 
 function App(props) {
@@ -23,6 +24,7 @@ function App(props) {
                 <Route path="/Activities" element ={<ActivitiesContainer/>}/>
                 <Route path="/Users" element={<UsersContainer/>}/>
                 <Route path="/EditProfile" element={<EditProfileContainer/>}/>
+                <Route path="/login" element={<Login/>}/>
             </Routes>
           </div>
         </div>

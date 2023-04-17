@@ -7,13 +7,15 @@ import {UsersReducer} from "./users-reducer";
 import authReducer from "./auth-reducer";
 import thunkMiddleware from "redux-thunk";
 
+
 let reducers = combineReducers({
     profilePage: profileReducer,
     mapPage: mapReducer,
     activitiesPage: activitiesReducer,
     profileEdit: profileEditReducer,
     usersPage: UsersReducer,
-    auth: authReducer
+    auth: authReducer,
+
 });
 
 

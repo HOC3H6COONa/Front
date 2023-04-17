@@ -5,6 +5,7 @@ const instance = axios.create({
     baseURL: `https://social-network.samuraijs.com/api/1.0/`,
 });
 
+
 export const AuthApi = {
     getAuth(){
         return instance.get('auth/me')
