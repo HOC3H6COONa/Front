@@ -2,34 +2,36 @@ import React from "react";
 import { Form, Field } from 'react-final-form'
 import {formHelpers} from "../../utilits/validators/validators";
 import Input from "../../utilits/FormControl/FormControl";
+import { Navigate } from "react-router-dom";
 
 
-const Login = (props) =>{
+
+const Login = (props) => {
+
+    if (props.isAuth){
+        return <Navigate to="/profile"/>
+    }
+
     return (
         <div>
             <h1>Login</h1>
-            <LoginForm/>
+            <LoginForm login={props.login}/>
         </div>
 
     )
 }
-const abcfunc =(values)=>{
-    debugger;
-    console.log(values)
 
-}
 
 const LoginForm = (props) => {
     return (
         <Form
             initialValues={{
-                Login: '',
+                Email: '',
                 Password: '',
                 rememberMe: false
             }}
             onSubmit={values => {
-                abcfunc(values);
-
+                props.login(values.Email,values.Password,values.rememberMe);
             }}
             validate={values => {
                 // do validation here, and return errors object
@@ -38,19 +40,17 @@ const LoginForm = (props) => {
             render = {({handleSubmit, pristine, form, submitting,invalid}) => (
                 <form onSubmit={handleSubmit}>
                     <div>
-                        <label>Login</label>
+                        <label>Email</label>
                         <div>
-                            <Field name={"Login"}
-                                   autocomplete={"off"} component={Input} type={"text"}
-                                   validate={formHelpers.composeValidators(
-                                       formHelpers.required,
-                                       formHelpers.emailValidation)}/>
+                            <Field name={"Email"}
+                                   autoComplete={"off"} component={Input} type={"text"}
+                                   validate={formHelpers.composeValidators( formHelpers.required, formHelpers.emailValidation)}/>
                         </div>
                     </div>
                     <div>
                         <label>Password</label>
                         <div>
-                            <Field name={"Password"}  autocomplete={"off"} component={Input} type={"text"} validate={formHelpers.required}/>
+                            <Field name={"Password"}  autoComplete={"off"} component={Input} type={"password"} validate={formHelpers.required}/>
                         </div>
                     </div>
                     <div>

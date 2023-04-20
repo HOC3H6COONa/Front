@@ -9,6 +9,8 @@ import ProfileContainer from "./Components/Profile/ProfileContainer";
 import HeaderContainer from "./Components/Header/HeaderContainer";
 import UsersContainer from "./Components/Users/UsersContainer";
 import Login from "./Components/Login/Login";
+import LoginContainer from "./Components/Login/LoginContainer";
+
 
 
 function App(props) {
@@ -24,7 +26,7 @@ function App(props) {
                 <Route path="/Activities" element ={<ActivitiesContainer/>}/>
                 <Route path="/Users" element={<UsersContainer/>}/>
                 <Route path="/EditProfile" element={<EditProfileContainer/>}/>
-                <Route path="/login" element={<Login/>}/>
+                <Route path="/login" element={<LoginContainer/>}/>
             </Routes>
           </div>
         </div>

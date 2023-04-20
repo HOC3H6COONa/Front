@@ -12,5 +12,14 @@ export const AuthApi = {
             .then(response =>{
                 return response.data;
             });
-    }
+    },
+
+    Login(email, password, rememberMe=false){
+        return instance.post(`auth/login`,{email,password,rememberMe})
+    },
+
+    Logout(){
+        return instance.delete(`auth/login`)
+    },
+
 }
