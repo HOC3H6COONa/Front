@@ -22,6 +22,7 @@ export const profileReducer = (state = initialState,action) =>{
     }
 }
 
+
 export const setProfile = (profile) => ({type: SET_PROFILE,profile})
 
 export const getProfile = (userId) => {

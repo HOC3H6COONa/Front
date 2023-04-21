@@ -1,4 +1,6 @@
 import {AuthApi} from "../api/authapi";
+import {FORM_ERROR} from "final-form";
+
 
 const SET_USER_DATA = 'SET_USER_DATA'
 
@@ -29,22 +31,34 @@ export const getAuthUserData = () => (dispatch)=>{
     AuthApi.getAuth()
         .then(data=>{
             if (data.resultCode === 0){
-                debugger;
                 let {id,email,login} = data.data;
                 dispatch(setAuthUserData(id,email,login,true));
             }
         })
 }
 
-export const login = (email,password,rememberMe) =>  (dispatch) =>{
+export const login = (email,password,rememberMe) =>  async(dispatch) =>{
+    const response =   await AuthApi.Login(email,password,rememberMe);
+    if (response.data.resultCode === 0){
+        let {id,email,login} = response.data.data;
+        dispatch(getAuthUserData());
+    }else {
+        throw new Error('');
+    }
+}
+/*export const login = (email,password,rememberMe) =>  (dispatch) =>{
         AuthApi.Login(email,password,rememberMe)
             .then(response=>{
                 if (response.data.resultCode === 0){
                     let {id,email,login} = response.data.data;
+                    debugger;
                     dispatch(getAuthUserData());
+                }else {
+                    debugger;
+                    return {[FORM_ERROR]: "FAILED TO LOGIN"}
                 }
             })
-}
+}*/
 
 export const logout = (email,password,rememberMe) =>  (dispatch) =>{
     AuthApi.Logout()

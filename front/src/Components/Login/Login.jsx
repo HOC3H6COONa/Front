@@ -3,6 +3,8 @@ import { Form, Field } from 'react-final-form'
 import {formHelpers} from "../../utilits/validators/validators";
 import Input from "../../utilits/FormControl/FormControl";
 import { Navigate } from "react-router-dom";
+import classes from './Login.module.css'
+import {FORM_ERROR} from "final-form";
 
 
 
@@ -23,6 +25,16 @@ const Login = (props) => {
 
 
 const LoginForm = (props) => {
+
+
+    const onSubmit = async (FormData) => {
+        try {
+            let loginstatus = await props.login(FormData.Email, FormData.Password, FormData.rememberMe)
+        } catch (e) {
+            return {[FORM_ERROR]: "FAILED TO LOGIN"}
+        }
+    }
+
     return (
         <Form
             initialValues={{
@@ -30,14 +42,11 @@ const LoginForm = (props) => {
                 Password: '',
                 rememberMe: false
             }}
-            onSubmit={values => {
-                props.login(values.Email,values.Password,values.rememberMe);
-            }}
             validate={values => {
                 // do validation here, and return errors object
             }}
-
-            render = {({handleSubmit, pristine, form, submitting,invalid}) => (
+            onSubmit={onSubmit}
+            render = {({handleSubmit, pristine, form, submitting,invalid,submitError}) => (
                 <form onSubmit={handleSubmit}>
                     <div>
                         <label>Email</label>
@@ -56,8 +65,9 @@ const LoginForm = (props) => {
                     <div>
                         <Field name={"rememberMe"} component={"input"} type={"checkbox"}/>remember me
                     </div>
+                    {submitError && <div className={classes.error}>{submitError}</div>}
                     <div>
-                        <button type="Submit" disabled={submitting || invalid }> Login </button>
+                        <button type="Submit" disabled={submitting}> Login </button>
                         <button type="button" disabled={pristine || submitting} onClick={form.reset}>Clear Values</button>
                     </div>
                 </form>
