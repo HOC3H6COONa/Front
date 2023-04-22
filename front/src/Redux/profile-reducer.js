@@ -1,4 +1,3 @@
-/*import {initialState} from './profilecEditReducer'*/
 import {ProfileApi} from "../api/profileapi";
 
 
@@ -8,7 +7,9 @@ let initialState = {
     profile:
         {
             name:null,
-            image:null
+            image:null,
+            gender:null,
+            age: null,
         }
 }
 

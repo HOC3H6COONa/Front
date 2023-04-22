@@ -8,7 +8,7 @@ let initialState = {
     userid: null,
     email: null,
     login: null,
-    isAuth: false
+    isAuth: false,
 };
 
 const authReducer = (state = initialState, action) => {
@@ -38,12 +38,12 @@ export const getAuthUserData = () => (dispatch)=>{
 }
 
 export const login = (email,password,rememberMe) =>  async(dispatch) =>{
-    const response =   await AuthApi.Login(email,password,rememberMe);
+    const response = await AuthApi.Login(email,password,rememberMe);
     if (response.data.resultCode === 0){
         let {id,email,login} = response.data.data;
         dispatch(getAuthUserData());
     }else {
-        throw new Error('');
+        return {[FORM_ERROR]: "Failed to login"}
     }
 }
 /*export const login = (email,password,rememberMe) =>  (dispatch) =>{

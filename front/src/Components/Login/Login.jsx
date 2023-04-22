@@ -11,7 +11,7 @@ import {FORM_ERROR} from "final-form";
 const Login = (props) => {
 
     if (props.isAuth){
-        return <Navigate to="/profile"/>
+        return <Navigate to={'/profile/'+ 1}/>
     }
 
     return (
@@ -28,11 +28,7 @@ const LoginForm = (props) => {
 
 
     const onSubmit = async (FormData) => {
-        try {
-            let loginstatus = await props.login(FormData.Email, FormData.Password, FormData.rememberMe)
-        } catch (e) {
-            return {[FORM_ERROR]: "FAILED TO LOGIN"}
-        }
+            return  await props.login(FormData.Email, FormData.Password, FormData.rememberMe)
     }
 
     return (
@@ -65,7 +61,7 @@ const LoginForm = (props) => {
                     <div>
                         <Field name={"rememberMe"} component={"input"} type={"checkbox"}/>remember me
                     </div>
-                    {submitError && <div className={classes.error}>{submitError}</div>}
+                    {submitError && <strong className={classes.error}>{submitError}</strong>}
                     <div>
                         <button type="Submit" disabled={submitting}> Login </button>
                         <button type="button" disabled={pristine || submitting} onClick={form.reset}>Clear Values</button>
