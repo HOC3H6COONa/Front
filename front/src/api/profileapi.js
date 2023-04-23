@@ -1,8 +1,9 @@
-import {instance} from "./AxiosInstances/axiosInstance";
+import {DefaultInstance} from "./AxiosInstances/DefaultInstance";
+
 
 export const ProfileApi = {
     getProfile(userId){
-        return instance.get('profile/'+userId)
+        return DefaultInstance.get('user/'+userId)
             .then(response =>{
                 return response.data;
             });

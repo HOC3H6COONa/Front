@@ -39,9 +39,8 @@ export const getAuthUserData = () => async(dispatch)=>{
 export const login = (email,password) =>  async(dispatch) =>{
     const response = await AuthApi.Login(email,password);
     if (response.status === 200){
-        let {access,refresh} = response.data;
+        let {access} = response.data;
         localStorage.setItem('token',access);
-        localStorage.setItem('reftoken',refresh);
         dispatch(getAuthUserData());
     }else {
         return {[FORM_ERROR]: "Failed to login"}
@@ -63,7 +62,6 @@ export const login = (email,password) =>  async(dispatch) =>{
 
 export const logout = () => (dispatch) => {
     localStorage.setItem('token', null)
-    localStorage.setItem('reftoken',null)
     dispatch(setAuthUserData(null, null, null, null, false));
 }
 

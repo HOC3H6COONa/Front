@@ -2,7 +2,7 @@ import {instance} from "./AxiosInstances/axiosInstance";
 
 export const AuthApi = {
     getAuth(){
-        return instance.get('get_user_data/')
+        return instance.get('get_short_user_data/')
             .then(response =>{
                 return response;
             });
@@ -13,7 +13,7 @@ export const AuthApi = {
     },
 
     Logout(){
-        return instance.delete(`auth/login/`)
+        return instance.delete(`login/`)
     },
 
 }
