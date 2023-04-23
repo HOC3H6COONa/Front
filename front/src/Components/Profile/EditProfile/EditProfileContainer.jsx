@@ -7,7 +7,8 @@ import {connect} from "react-redux";
 
 let mapStateToProps = (state) =>{
     return {
-        state: state.profileEdit
+        state: state.profileEdit,
+        AuthId: state.auth.userid
     }
 }
 

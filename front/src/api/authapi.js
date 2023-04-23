@@ -1,25 +1,19 @@
-import axios from "axios";
-
-const instance = axios.create({
-    withCredentials: true,
-    baseURL: `https://social-network.samuraijs.com/api/1.0/`,
-});
-
+import {instance} from "./AxiosInstances/axiosInstance";
 
 export const AuthApi = {
     getAuth(){
-        return instance.get('auth/me')
+        return instance.get('get_user_data/')
             .then(response =>{
-                return response.data;
+                return response;
             });
     },
 
-    Login(email, password, rememberMe=false){
-        return instance.post(`auth/login`,{email,password,rememberMe})
+    Login(email, password){
+        return instance.post(`login/`,{email,password})
     },
 
     Logout(){
-        return instance.delete(`auth/login`)
+        return instance.delete(`auth/login/`)
     },
 
 }

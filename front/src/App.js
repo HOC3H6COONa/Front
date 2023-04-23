@@ -20,13 +20,13 @@ import {withRouter} from "./utilits/HOC/WithRouter";
 class  App extends React.Component{
 
   componentDidMount() {
-      this.props.initialiseApp();
+        /*this.props.initialiseApp();*/
   }
 
     render() {
-        if (!this.props.initialised){
+/*        if (!this.props.initialised){
             return <Preloader/>
-        }
+        }*/
         return (
             <div className={'APP'}>
                 <HeaderContainer/>
@@ -48,7 +48,7 @@ class  App extends React.Component{
 }
 
 const mapStateToProps = (state) => ({
-    initialised: state.app.initialised
+    initialised: state.app.initialised,
 });
 
 export default compose(

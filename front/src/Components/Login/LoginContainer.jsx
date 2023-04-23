@@ -16,8 +16,9 @@ class LoginContainer extends React.Component {
 
 let mapStateToProps = (state) => ({
     isAuth: state.auth.isAuth,
-    AuthId: state.auth.userId
+    AuthId: state.auth.userid,
 });
+
 
 
 export default connect(mapStateToProps,{login})(LoginContainer);

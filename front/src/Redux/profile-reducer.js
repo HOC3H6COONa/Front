@@ -28,6 +28,7 @@ export const setProfile = (profile) => ({type: SET_PROFILE,profile})
 
 export const getProfile = (userId) => {
     return (dispatch) =>{
+        debugger;
         ProfileApi.getProfile(userId)
             .then(data => {
                dispatch(setProfile(data));

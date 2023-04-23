@@ -2,12 +2,13 @@ import React from 'react'
 import classes from './Profile.module.css'
 
 import {NavLink} from "react-router-dom";
+import {Preloader} from "../../utilits/Preloader";
 
 
 const Profile = (props) => {
     if (!props.profile){
         return(
-        <div> 123 </div>
+            <Preloader/>
         )
     }
 

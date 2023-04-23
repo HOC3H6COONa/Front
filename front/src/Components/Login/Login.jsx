@@ -3,15 +3,14 @@ import { Form, Field } from 'react-final-form'
 import {formHelpers} from "../../utilits/validators/validators";
 import Input from "../../utilits/FormControl/FormControl";
 import { Navigate } from "react-router-dom";
-import classes from './Login.module.css'
-import {FORM_ERROR} from "final-form";
+import classes from './Login.module.css';
 
 
 
 const Login = (props) => {
 
     if (props.isAuth){
-        return <Navigate to={'/profile/'+ 1}/>
+        return <Navigate to={'/profile/'+ props.AuthId}/>
     }
 
     return (
@@ -28,7 +27,7 @@ const LoginForm = (props) => {
 
 
     const onSubmit = async (FormData) => {
-            return  await props.login(FormData.Email, FormData.Password, FormData.rememberMe)
+            return  await props.login(FormData.Email, FormData.Password)
     }
 
     return (
@@ -36,7 +35,6 @@ const LoginForm = (props) => {
             initialValues={{
                 Email: '',
                 Password: '',
-                rememberMe: false
             }}
             validate={values => {
                 // do validation here, and return errors object
@@ -57,9 +55,6 @@ const LoginForm = (props) => {
                         <div>
                             <Field name={"Password"}  autoComplete={"off"} component={Input} type={"password"} validate={formHelpers.required}/>
                         </div>
-                    </div>
-                    <div>
-                        <Field name={"rememberMe"} component={"input"} type={"checkbox"}/>remember me
                     </div>
                     {submitError && <strong className={classes.error}>{submitError}</strong>}
                     <div>

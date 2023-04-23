@@ -49,7 +49,7 @@ const EditProfile =(props) =>{
                 <input className={classes.textarea} onChange={onCityChange} ref={newCityElement}
                           value={props.state.EditCityText}/>
                 <div className={classes.profile2}>
-                    <NavLink to={'/profile'}>
+                    <NavLink to={`/profile/${props.AuthId}`}>
                         <button className={classes.button} onClick={Confirm}>Confirm</button>
                     </NavLink>
                 </div>

@@ -9,7 +9,12 @@ import {getAuthUserData, logout} from "../../Redux/auth-reducer";
 class HeaderContainer extends React.Component {
 
     componentDidMount() {
-        this.props.getAuthUserData();
+/*
+        if (this.props.isAuth) {
+            this.props.getAuthUserData();
+        }
+*/
+
     }
 
     render(){
@@ -22,7 +27,7 @@ class HeaderContainer extends React.Component {
 
 let mapStateToProps = (state) => ({
     isAuth: state.auth.isAuth,
-    login: state.auth.login
+    name: state.auth.name
 });
 
 

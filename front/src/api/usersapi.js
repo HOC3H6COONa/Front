@@ -7,7 +7,7 @@ const instance = axios.create({
 
 export const UsersApi = {
     getUsers(){
-        return instance.get('profile/'+'all')
+        return instance.get('profile/')
             .then(response =>{
                 return response.data;
             });
