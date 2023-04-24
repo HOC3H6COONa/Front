@@ -39,7 +39,7 @@ export const getAuthUserData = () => async(dispatch)=>{
 export const login = (email,password) =>  async(dispatch) =>{
     const response = await AuthApi.Login(email,password);
     if (response.status === 200){
-        let {access} = response.data;
+        let {refresh,access} = response.data;
         localStorage.setItem('token',access);
         dispatch(getAuthUserData());
     }else {
@@ -61,7 +61,7 @@ export const login = (email,password) =>  async(dispatch) =>{
 }*/
 
 export const logout = () => (dispatch) => {
-    localStorage.setItem('token', null)
+    localStorage.removeItem('token')
     dispatch(setAuthUserData(null, null, null, null, false));
 }
 

@@ -1,22 +1,23 @@
 import {applyMiddleware, combineReducers, legacy_createStore as createStore} from "redux";
 import {profileReducer} from "./profile-reducer";
 import {mapReducer} from "./map-reducer";
-import {activitiesReducer} from "./activities-reducer";
 import {profileEditReducer} from "./profilecEditReducer";
 import {UsersReducer} from "./users-reducer";
 import authReducer from "./auth-reducer";
 import thunkMiddleware from "redux-thunk";
 import {appReducer} from "./app-reducer";
+import {eventPageReducer, eventsPageReducer} from "./eventsPage-reducer";
 
 
 let reducers = combineReducers({
     profilePage: profileReducer,
     mapPage: mapReducer,
-    activitiesPage: activitiesReducer,
+    eventsPage: eventsPageReducer,
     profileEdit: profileEditReducer,
     usersPage: UsersReducer,
     auth: authReducer,
     app: appReducer,
+    eventPage: eventPageReducer
 
 });
 

@@ -13,7 +13,7 @@ instance.interceptors.request.use((config)=>{
     return config;
 })
 
-instance.interceptors.request.use((config)=> {
+instance.interceptors.response.use((config)=> {
     return config;
 }, async (error) => {
     const originalRequest = error.config;

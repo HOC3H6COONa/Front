@@ -34,14 +34,18 @@ class ProfileContainer extends React.Component {
 
 
 
+
+/*
 let AuthRedirectComponent = withAuth(ProfileContainer)
 
 let mapStateToPropsforNav = (state) =>({
     isAuth: state.auth.isAuth
+
 });
 
 AuthRedirectComponent = connect(mapStateToPropsforNav)(AuthRedirectComponent)
 
+*/
 
 
 
@@ -54,6 +58,7 @@ let mapStateToProps = (state) => ({
 
 
 
+
 export default compose(
     withRouter,
-    connect(mapStateToProps,{setProfile,getProfile}))(AuthRedirectComponent)
+    connect(mapStateToProps,{setProfile,getProfile}))(ProfileContainer)

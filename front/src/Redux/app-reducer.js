@@ -22,11 +22,9 @@ export const appReducer = (state = initialState,action) =>{
 
 export const initialiseSuccess = () => ({type: INITIALISE_APP})
 
-export const initialiseApp = () => (dispatch) =>{
-    debugger;
+export const initialiseApp = () => async (dispatch) =>{
     if (localStorage.getItem('token')) {
-        console.log(localStorage.getItem('token'))
-        let promise = dispatch(getAuthUserData());
+        let promise = await dispatch(getAuthUserData());
         Promise.all([promise])
             .then(() => {
                 dispatch(initialiseSuccess());

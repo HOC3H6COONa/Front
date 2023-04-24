@@ -12,7 +12,6 @@ const Profile = (props) => {
         )
     }
 
-
     return (
             <div>
                 <img src={props.profile.image} className={classes.img}/>
@@ -20,9 +19,15 @@ const Profile = (props) => {
                 <div className={classes.text}> Пол: {props.profile.gender} </div>
                 <div className={classes.text}> Возраст: {props.profile.age} </div>
             <div className={classes.profile}>
+                {props.profile.id === props.AuthId ?
                     <NavLink to={'/EditProfile'}>
                         <button className={classes.button}>Edit Profile</button>
-                    </NavLink>
+                    </NavLink> :
+                    <></>
+                }
+                {props.isAuth && props.profile.id !== props.AuthId  ?
+                    <button className={classes.button}>Follow</button>:  <></>
+                }
                 </div>
             </div>
         )
