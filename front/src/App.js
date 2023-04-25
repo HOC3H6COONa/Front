@@ -14,7 +14,7 @@ import {Preloader} from "./utilits/Preloader";
 import {compose} from "redux";
 import {withRouter} from "./utilits/HOC/WithRouter";
 import EventsContainer from "./Components/Events/EventsContainer";
-import EventContainer from "./Components/Events/Event/EventContainer";
+import SingleEventContainer from "./Components/Events/Event/SingleEventContainer";
 
 
 
@@ -38,7 +38,7 @@ class  App extends React.Component{
                         <Route path="/Profile/:userId" element={<ProfileContainer/>}/>
                         <Route path="/Profile" element={<ProfileContainer/>}/>
                         <Route path="/Events" element={<EventsContainer/>}/>
-                        <Route path="/Event/:eventId" element={<EventContainer/>}/>
+                        <Route path="/Event/:eventId" element={<SingleEventContainer/>}/>
                         <Route path="/Users" element={<UsersContainer/>}/>
                         <Route path="/EditProfile" element={<EditProfileContainer/>}/>
                         <Route path="/login" element={<LoginContainer/>}/>

@@ -39,7 +39,7 @@ export const getAuthUserData = () => async(dispatch)=>{
 export const login = (email,password) =>  async(dispatch) =>{
     const response = await AuthApi.Login(email,password);
     if (response.status === 200){
-        let {refresh,access} = response.data;
+        let {access} = response.data;
         localStorage.setItem('token',access);
         dispatch(getAuthUserData());
     }else {

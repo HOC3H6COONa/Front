@@ -1,12 +1,13 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {Event} from "./Event";
+import {SingleEvent} from "./SingleEvent";
 import {withRouter} from "../../../utilits/HOC/WithRouter";
 import {compose} from "redux";
-import {getEvent} from "../../../Redux/eventsPage-reducer";
+import {getEvent} from "../../../Redux/SingleEvent-reducer";
 
 
-class EventContainer extends React.Component{
+
+class SingleEventContainer extends React.Component{
 
     componentDidMount() {
         let eventId = this.props.router.params.eventId;
@@ -14,7 +15,7 @@ class EventContainer extends React.Component{
     }
     render() {
         return(
-            <Event {...this.props}/>
+            <SingleEvent {...this.props}/>
         )
     }
 }
@@ -23,11 +24,11 @@ class EventContainer extends React.Component{
 
 let mapStateToProps = (state) =>{
     return {
-        eventsList: state.eventsPage.Event
+        Event: state.SingleEvent.Event
     }
 }
 
 
 export default compose(
     withRouter,
-    connect(mapStateToProps,{getEvent}))(EventContainer);
+    connect(mapStateToProps,{getEvent}))(SingleEventContainer);
