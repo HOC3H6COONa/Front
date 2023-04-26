@@ -6,51 +6,29 @@ import {NavLink} from "react-router-dom";
 
 const EditProfile =(props) =>{
 
-    let Confirm =()=>{
-        props.Confirm();
-    }
-
-    let onNameChange =()=>{
-        let text = newNameElement.current.value;
-        props.updateName(text);
-    }
-    let newNameElement= React.createRef();
-
-    let onCityChange =()=>{
-        let text = newCityElement.current.value;
-        props.updateCity(text);
-    }
-    let newCityElement= React.createRef();
-
-    let onAgeChange =()=>{
-        let text = newAgeElement.current.value;
-        props.updateAge(text);
-    }
-    let newAgeElement= React.createRef();
-
-    let onGenderChange =()=>{
-        let text = newGenderElement.current.value;
-        props.updateGender(text);
-    }
-    let newGenderElement= React.createRef();
-
-
     return (
         <div className={classes.profile}>
-            <img className={classes.img} src={props.state.url}/>
+            <img className={classes.img} src={props.state.image}/>
             <div className={classes.profile}>
-                <div className={classes.textarea}> URL: {props.state.url}</div>
-                <input className={classes.textarea} onChange={onNameChange} ref={newNameElement}
-                          value={props.state.EditNameText}/>
-                <input className={classes.textarea} onChange={onGenderChange} ref={newGenderElement}
-                          value={props.state.EditGenderText}/>
-                <input className={classes.textarea} onChange={onAgeChange} ref={newAgeElement}
-                          value={props.state.EditAgeText}/>
-                <input className={classes.textarea} onChange={onCityChange} ref={newCityElement}
-                          value={props.state.EditCityText}/>
+                <div className={classes.item}>Image URL: <input className={classes.textarea}
+                          defaultValue={props.state.image}></input></div>
+                <div className={classes.item}> Name:<input className={classes.textarea}
+                          defaultValue={props.state.name}/></div>
+                <div className={classes.item}> Gender:
+                    <select className={classes.select}>
+                        <option> Male</option>
+                        <option> Female</option>
+                    </select>
+                </div>
+       {/*         <div className={classes.item}> Gender:<input className={classes.textarea}
+                          defaultValue={props.state.gender}/></div>*/}
+                <div className={classes.item}> Birthday:<input className={classes.textarea}
+                          defaultValue={props.state.birthday}/></div>
+               {/* <input className={classes.textarea}
+                          value={props.state.city}/>*/}
                 <div className={classes.profile2}>
-                    <NavLink to={`/profile/${props.AuthId}`}>
-                        <button className={classes.button} onClick={Confirm}>Confirm</button>
+                    <NavLink to={`/profile/${props.state.userid}`}>
+                        <button className={classes.button}>Confirm</button>
                     </NavLink>
                 </div>
             </div>

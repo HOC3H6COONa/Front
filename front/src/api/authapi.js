@@ -4,7 +4,7 @@ import {instance} from "./AxiosInstances/axiosInstance";
 
 export const AuthApi = {
     getAuth(){
-        return instance.get('get_short_user_data/')
+        return instance.get('get_full_user_data/')
             .then(response =>{
                 return response;
             });

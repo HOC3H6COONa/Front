@@ -6,6 +6,9 @@ import {FORM_ERROR} from "final-form";
 const SET_USER_DATA = 'SET_USER_DATA'
 
 let initialState = {
+    birthday: null,
+    email: null,
+    gender: null,
     userid: null,
     image: null,
     name: null,
@@ -25,13 +28,13 @@ const authReducer = (state = initialState, action) => {
     }
 
 
-export const setAuthUserData = (userid,image,name,isAuth) => ({type: SET_USER_DATA, data: {userid,image,name,isAuth}})
+export const setAuthUserData = (birthday,email,gender,userid,image,name,isAuth) => ({type: SET_USER_DATA, data: {birthday, email, gender,userid,image,name,isAuth}})
 
 export const getAuthUserData = () => async(dispatch)=>{
     const response =  await AuthApi.getAuth();
             if (response.status === 200){
-                let {id,image,name} = response.data;
-                dispatch(setAuthUserData(id,image,name,true));
+                let {birthday, email ,gender,id,image,name} = response.data;
+                dispatch(setAuthUserData(birthday, email ,gender, id,image,name,true));
             }
 }
 
