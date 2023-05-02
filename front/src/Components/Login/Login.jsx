@@ -1,9 +1,9 @@
 import React from "react";
 import { Form, Field } from 'react-final-form'
 import {formHelpers} from "../../utilits/validators/validators";
-import Input from "../../utilits/FormControl/FormControl";
 import { Navigate } from "react-router-dom";
 import classes from './Login.module.css';
+import {Input} from "../../utilits/FormControl/FormControl";
 
 
 
@@ -35,9 +35,6 @@ const LoginForm = (props) => {
             initialValues={{
                 Email: '',
                 Password: '',
-            }}
-            validate={values => {
-                // do validation here, and return errors object
             }}
             onSubmit={onSubmit}
             render = {({handleSubmit, pristine, form, submitting,invalid,submitError}) => (

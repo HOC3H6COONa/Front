@@ -9,7 +9,10 @@ const Header = (props) =>{
             <div className={classes.loginBlock}>
                 {props.name ?
                     <span>
-                        <img src ={props.image} className={classes.image}/> | <button  className={classes.button} onClick={props.logout} >Log out</button>
+                        <img src ={props.image} className={classes.image}/> |
+                        <NavLink to ={'/Events'}>
+                            <button  className={classes.button} onClick={props.logout} >Log out</button>
+                        </NavLink>
                     </span>
                     :
                     <NavLink to={'/login'} className={classes.loginBlock}>

@@ -5,7 +5,7 @@ import React from "react";
 export const withAuth = (Component) => {
     class withAuthComponent extends React.Component{
         render () {
-            if (this.props.router.params.userId !== null) return <Navigate to ='/login'/>
+            if (!this.props.isAuth) return <Navigate to ='/login'/>
             return <Component {...this.props}/>
         }
     }

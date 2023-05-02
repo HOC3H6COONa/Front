@@ -1,7 +1,8 @@
 import React from "react";
 import classes from "./FormControl.module.css"
+import Select from 'react-select';
 
-export default function Input({ input, meta, ...props }) {
+export function Input({ input, meta, ...props }) {
     const hasError = meta.error && meta.touched;
     return (
         <div >
@@ -11,3 +12,14 @@ export default function Input({ input, meta, ...props }) {
         </div>
     );
 }
+
+
+
+export function FormSelect ({ input, ...rest }) {
+    return(
+        <div>
+            <Select {...input} {...rest} />
+        </div>
+    );
+}
+
