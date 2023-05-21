@@ -1,31 +1,40 @@
 import React from 'react'
 import classes from './EditProfile.module.css'
-import {Form, Field, useFormState} from 'react-final-form'
-import {NavLink} from "react-router-dom";
+import {Form, Field} from 'react-final-form'
 import {FormSelect, Input} from "../../../utilits/FormControl/FormControl";
 import {formHelpers} from "../../../utilits/validators/validators";
+import {useNavigate,Navigate} from "react-router-dom";
 
 
 
 const EditProfile =(props) =>{
 
+    if (!props.state.userid){
+        return <Navigate to={"/login"}/>
+    }
     return (
         <div className={classes.profile}>
             <img className={classes.img} src={props.state.image}/>
-            <EditProfileForm state = {props.state}/>
+            <EditProfileForm state = {props.state} editProfile={props.editProfile}/>
         </div>
     );
 }
 
 const EditProfileForm = (props) => {
-
+    const navigate = useNavigate();
     const onSubmit = async(FormData) =>{
-        console.log(FormData)
-        return await props.editProfile({Image:FormData.Image,
-            Name:FormData.Name,
-            Gender:FormData.Gender.value,
-            Birthday:FormData.Birthday
-        })
+        if (FormData.Gender.value){
+            FormData.Gender = FormData.Gender.value;
+        }
+        const response =  await props.editProfile(FormData.Image,
+            FormData.Name,
+            FormData.Gender,
+            FormData.Birthday)
+        if (!response){
+            navigate("/profile/"+props.state.userid)
+        }else {
+            return response
+        }
     }
 
 
@@ -39,7 +48,7 @@ const EditProfileForm = (props) => {
             initialValues={{
                 Image: props.state.image,
                 Name: props.state.name,
-                Gender: props.state.gender,
+                Gender:props.state.gender,
                 Birthday: props.state.birthday
             }}
             onSubmit={onSubmit}
@@ -63,7 +72,8 @@ const EditProfileForm = (props) => {
                         <div className={classes.item}>
                             <label> Gender </label>
                             <div>
-                                <Field name={"Gender"} component={FormSelect} className={classes.select} options={options}></Field>
+                                <Field name={"Gender"} component={FormSelect} className={classes.select}
+                                        options={options}></Field>
                             </div>
                         </div>
 
@@ -74,8 +84,9 @@ const EditProfileForm = (props) => {
                                        validate={formHelpers.composeValidators(formHelpers.required,formHelpers.dateValidation)} ></Field>
                             </div>
                         </div>
+                        {submitError && <strong className={classes.error}>{submitError}</strong>}
                         <div className={classes.profile2}>
-                            <button type="Submit" className={classes.button}>Confirm </button>
+                                <button type="Submit" className={classes.button}>Confirm </button>
                         </div>
                     </div>
                 </form>

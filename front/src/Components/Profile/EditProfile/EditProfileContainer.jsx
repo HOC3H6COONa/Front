@@ -1,6 +1,7 @@
 import React from 'react'
 import EditProfile from "./EditProfile";
 import {connect} from "react-redux";
+import {editProfile} from "../../../Redux/profile-reducer";
 
 
 let mapStateToProps = (state) =>{
@@ -9,6 +10,4 @@ let mapStateToProps = (state) =>{
     }
 }
 
-export default connect(mapStateToProps,{
-
-} )(EditProfile);
+export default connect(mapStateToProps,{editProfile} )(EditProfile);

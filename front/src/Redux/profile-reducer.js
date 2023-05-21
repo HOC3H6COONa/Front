@@ -1,4 +1,6 @@
 import {ProfileApi} from "../api/profileapi";
+import {FORM_ERROR} from "final-form";
+import {getAuthUserData} from "./auth-reducer";
 
 
 const SET_PROFILE = 'SET_PROFILE'
@@ -33,5 +35,16 @@ export const getProfile = (userId) => {
                dispatch(setProfile(data));
             });
     }
+}
+
+export const editProfile = (Image,Name,Gender,Birthday) => async(dispatch) =>{
+    const response = await ProfileApi.editProfile(Image,Name,Gender,Birthday);
+    if (response.status === 200){
+        dispatch(getAuthUserData());
+        return 0;
+    }else{
+        return {[FORM_ERROR]: "Failed to Edit Profile"}
+    }
+
 }
 
