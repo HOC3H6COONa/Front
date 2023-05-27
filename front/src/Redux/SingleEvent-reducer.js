@@ -7,18 +7,28 @@ let initialStateEvent ={
         {
             id: null,
             title: null,
-            category: null,
+            category: {
+                id: null,
+                title:null
+            },
             host:{
                 id: null,
                 image: null,
                 name: null,
+                is_following: null
             },
                  participants: [
-                     {}
+                     {
+                         id: null,
+                         image: null,
+                         name: null,
+                         is_following: null
+                     }
                  ],
             location: null,
             description: null,
             time: null,
+            is_participating: null
         }
 }
 

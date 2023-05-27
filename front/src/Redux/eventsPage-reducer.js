@@ -8,9 +8,19 @@ let initialState ={
         {
             id: null,
             title: null,
-            category: null,
+            host: {
+                id: null,
+                image: null,
+                name: null,
+                is_following: null
+            },
+            category: {
+                id: null,
+                title: null,
+            },
             location: null,
             time: null,
+            is_participating: null,
         }
     ]
 }

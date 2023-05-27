@@ -39,6 +39,15 @@ export const getAuthUserData = () => async(dispatch)=>{
 }
 
 
+export const register = (email,image,name,gender,birthday,password) =>  async(dispatch) =>{
+    const response = await AuthApi.Register(email,image,name,gender,birthday,password);
+    if (response.status === 200){
+        return 1;
+    }else {
+        return {[FORM_ERROR]: "Failed to register"}
+    }
+}
+
 export const login = (email,password) =>  async(dispatch) =>{
     const response = await AuthApi.Login(email,password);
     if (response.status === 200){

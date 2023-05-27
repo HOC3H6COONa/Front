@@ -24,7 +24,8 @@ class SingleEventContainer extends React.Component{
 
 let mapStateToProps = (state) =>{
     return {
-        Event: state.SingleEvent.Event
+        Event: state.SingleEvent.Event,
+        AuthId: state.auth.userid
     }
 }
 

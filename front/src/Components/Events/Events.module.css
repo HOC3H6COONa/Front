@@ -114,3 +114,15 @@
     vertical-align: middle;
     padding-right: 10px;
 }
+.Button{
+    background-color: lightgray;
+    color: black;
+    cursor: pointer;
+    height: 50px;
+    width: 120px;
+    font-size: 25px;
+    text-align: center;
+    outline: none;
+    border-radius: 5px;
+}
+

@@ -1,5 +1,16 @@
 import {DefaultInstance} from "./AxiosInstances/DefaultInstance";
 
+if (localStorage.getItem('token')) {
+    DefaultInstance.interceptors.request.use((config) => {
+        config.headers.Authorization = `JWT ${localStorage.getItem('token')}`
+        return config;
+    })
+} else {
+    DefaultInstance.interceptors.request.use((config) => {
+        config.headers.Authorization = null;
+        return config;
+    })
+}
 
 export const EventsApi = {
     getEvents() {

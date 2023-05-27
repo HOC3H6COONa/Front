@@ -15,6 +15,7 @@ import {compose} from "redux";
 import {withRouter} from "./utilits/HOC/WithRouter";
 import EventsContainer from "./Components/Events/EventsContainer";
 import SingleEventContainer from "./Components/Events/Event/SingleEventContainer";
+import RegistrationContainer from "./Components/Registration/RegistrationContainer";
 
 
 
@@ -42,6 +43,7 @@ class  App extends React.Component{
                         <Route path="/Users" element={<UsersContainer/>}/>
                         <Route path="/EditProfile" element={<EditProfileContainer/>}/>
                         <Route path="/login" element={<LoginContainer/>}/>
+                        <Route path="/Registration" element={<RegistrationContainer/>}/>
                     </Routes>
                 </div>
             </div>
