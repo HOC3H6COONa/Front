@@ -10,17 +10,17 @@ export const Events = (props) => {
                         <button className={classes.Button}> New Event </button>
                     </NavLink>
                 </div>
-                <div className={classes.Padding}>
-                    <span className={classes.eventItem}>
-                            <input className={classes.Input}/>
-                    </span>
-                    <span className={classes.eventItem}>
-                            <button className={classes.Button}> My Events </button>
-                    </span>
-                    <span className={classes.eventItem}>
-                            <button className={classes.Button}>Friend's Events</button>
-                    </span>
-                </div>
+                {/*<div className={classes.Padding}>*/}
+                {/*    <span className={classes.eventItem}>*/}
+                {/*            <input className={classes.Input}/>*/}
+                {/*    </span>*/}
+                {/*    <span className={classes.eventItem}>*/}
+                {/*            <button className={classes.Button}> My Events </button>*/}
+                {/*    </span>*/}
+                {/*    <span className={classes.eventItem}>*/}
+                {/*            <button className={classes.Button}>Friend's Events</button>*/}
+                {/*    </span>*/}
+                {/*</div>*/}
                 <div>
                     {props.eventsList.map(e =>
                         <div key={e.id}>
