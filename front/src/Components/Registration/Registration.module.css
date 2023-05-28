@@ -23,12 +23,13 @@
     border-radius: 10px;
     background: white;
     font-size:25px;
-    padding-bottom: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     vertical-align: middle;
 }
 .button{
     height:40px;
-    width: 200px;
+    width: 170px;
     border-radius: 15px;
     background: White;
     font-size: 20px;
@@ -36,4 +37,8 @@
 .button:hover {
     background-color:Crimson;
     transition: 0.2s;
+}
+
+.buttonpadding{
+    padding-right: 20px;
 }

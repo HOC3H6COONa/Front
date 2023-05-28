@@ -32,7 +32,9 @@
      border-radius: 10px;
      background: white;
      font-size:25px;
-     padding-bottom: 20px;
+     padding-bottom: 10px;
+     padding-top: 10px;
+     /*padding-bottom: 20px;*/
      vertical-align: middle;
  }
 

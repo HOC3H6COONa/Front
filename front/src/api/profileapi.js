@@ -11,7 +11,7 @@ export const ProfileApi = {
     },
 
     editProfile(Image,Name,Gender,Birthday){
-        return instance.patch('update_user_data/',
+        return instance.patch('auth/update_user_data/',
             {
                 image:Image,
                 name: Name,

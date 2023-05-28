@@ -1,4 +1,6 @@
 import {EventsApi} from "../api/eventsapi";
+import {AuthApi} from "../api/authapi";
+import {FORM_ERROR} from "final-form";
 
 const SET_EVENTS = 'SET_EVENTS'
 
@@ -45,3 +47,20 @@ export const getEvents =() => async (dispatch) => {
     dispatch(setEvents(data))
 }
 
+export const newEvent = (title,category,location,description,time) =>  async(dispatch) =>{
+    const response = await EventsApi.NewEvent(title,category,location,description,time);
+    if (response.status === 201){
+        return response.data.id;
+    }else {
+        return 'error'
+    }
+}
+
+export const editEvent = (title,category,location,description,time,id) =>  async(dispatch) =>{
+    const response = await EventsApi.editEvent(title,category,location,description,time,id);
+    if (response.status === 201){
+        return response.data.id;
+    }else {
+        return 'error'
+    }
+}

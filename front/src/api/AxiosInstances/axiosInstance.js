@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = `http://127.0.0.1:8000/auth/`
+const API_URL = `http://127.0.0.1:8000/`
 
 export const instance = axios.create({
     withCredentials: true,
@@ -20,7 +20,7 @@ instance.interceptors.response.use((config)=> {
     if (error.response.status === 401 && error.config && !error.config._isRetry){
         originalRequest._isRetry = true
         try{
-            const response = await axios.post(`${API_URL}login/refresh/`,{},{withCredentials: true});
+            const response = await axios.post(`${API_URL}auth/login/refresh/`,{},{withCredentials: true});
             localStorage.setItem('token',response.data.access);
             return instance.request(originalRequest);
         } catch(e){

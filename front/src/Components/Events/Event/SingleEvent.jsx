@@ -20,12 +20,18 @@ export const SingleEvent = (props)=> {
                     </div>
                     <div className={classes.SingleEventItem}>Address: {props.Event.location}</div>
                     <div className={classes.SingleEventItem}>Time: {props.Event.time}</div>
-                    {props.Event.is_participating  ?
+                    <div className={classes.SingleEventItem}>Description: {props.Event.description}</div>
+                    {props.Event.host.id !== props.AuthId ? props.Event.is_participating ?
                         <div className={classes.SingleEventItem}>
                             <button className={classes.Button}>Quit</button>
                         </div> :
                         <div className={classes.SingleEventItem}>
                             <button className={classes.Button}>Join</button>
+                        </div> :
+                        <div className={classes.SingleEventItem}>
+                            <NavLink to={`Edit`}>
+                                <button className={classes.Button}>Edit Event</button>
+                            </NavLink>
                         </div>
 
                     }

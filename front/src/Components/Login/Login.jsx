@@ -1,7 +1,7 @@
 import React from "react";
 import { Form, Field } from 'react-final-form'
 import {formHelpers} from "../../utilits/validators/validators";
-import { Navigate } from "react-router-dom";
+import {Navigate, NavLink} from "react-router-dom";
 import classes from './Login.module.css';
 import {Input} from "../../utilits/FormControl/FormControl";
 
@@ -15,10 +15,14 @@ const Login = (props) => {
 
     return (
         <div>
-            <h1>Login</h1>
-            <LoginForm login={props.login}/>
+            <div>
+                <h1>Login</h1>
+                <LoginForm login={props.login}/>
+            </div>
+            <div className={classes.registerItem}>
+                <NavLink to="/Registration" className={classes.registerLink}> Register </NavLink>
+            </div>
         </div>
-
     )
 }
 
@@ -41,22 +45,23 @@ const LoginForm = (props) => {
                 <form onSubmit={handleSubmit}>
                     <div>
                         <label>Email</label>
-                        <div>
+                        <div className={classes.item}>
                             <Field name={"Email"}
-                                   autoComplete={"off"} component={Input} type={"text"}
+                                   autoComplete={"off"} component={Input} type={"text"} className={classes.textarea}
                                    validate={formHelpers.composeValidators( formHelpers.required, formHelpers.emailValidation)}/>
                         </div>
                     </div>
                     <div>
                         <label>Password</label>
-                        <div>
-                            <Field name={"Password"}  autoComplete={"off"} component={Input} type={"password"} validate={formHelpers.required}/>
+                        <div className={classes.item}>
+                            <Field name={"Password"}  autoComplete={"off"} component={Input} type={"password"} validate={formHelpers.required} className={classes.textarea}/>
                         </div>
                     </div>
                     {submitError && <strong className={classes.error}>{submitError}</strong>}
                     <div>
-                        <button type="Submit" disabled={submitting}> Login </button>
-                        <button type="button" disabled={pristine || submitting} onClick={form.reset}>Clear Values</button>
+                        <button type="Submit" disabled={submitting} className={classes.button}> Login </button>
+                        <span className={classes.buttonpadding}></span>
+                        <button type="button" disabled={pristine || submitting} onClick={form.reset} className={classes.button}>Clear Values</button>
                     </div>
                 </form>
             )}

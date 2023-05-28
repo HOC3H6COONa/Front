@@ -1,7 +1,7 @@
 import React from "react";
 import { Form, Field } from 'react-final-form'
 import {formHelpers} from "../../utilits/validators/validators";
-import { Navigate } from "react-router-dom";
+import {Navigate, useNavigate} from "react-router-dom";
 import classes from "./Registration.module.css";
 import {FormSelect, Input} from "../../utilits/FormControl/FormControl";
 import {FORM_ERROR} from "final-form";
@@ -10,9 +10,9 @@ import {FORM_ERROR} from "final-form";
 
 const Registration = (props) => {
 
-    //  if (props.isAuth){
-    //     return <Navigate to={'/profile/'+ props.AuthId}/>
-    // }
+     if (props.isAuth){
+        return <Navigate to={'/profile/'+ props.AuthId}/>
+    }
 
     return (
         <div>
@@ -26,11 +26,15 @@ const Registration = (props) => {
 
 const RegForm = (props) => {
 
-
+    const navigate = useNavigate();
+    
     const onSubmit = async (FormData) => {
         if (FormData.Password === FormData.PasswordConfirmation) {
-            return await props.register(FormData.Email, FormData.Image, FormData.Name,
+            const response =  await props.register(FormData.Email, FormData.Image, FormData.Name,
                 FormData.Gender.value, FormData.Birthday, FormData.Password)
+            if (!response){
+                navigate("/login/")
+            }
         } else {
             return {[FORM_ERROR]: "Passwords do not match"}
         }
@@ -68,7 +72,8 @@ const RegForm = (props) => {
                         <div className={classes.item}>
                             <Field name={"Image"}  autoComplete={"off"} className={classes.textarea}
                                    component={Input} type={"text"}
-                                   validate={formHelpers.composeValidators( formHelpers.required, formHelpers.urlValidation)}/>
+                                   validate={formHelpers.composeValidators( formHelpers.required)}/>
+                            {/*formHelpers.urlValidation*/}
                         </div>
                     </div>
                     <div>
@@ -111,6 +116,7 @@ const RegForm = (props) => {
                     {submitError && <strong className={classes.error}>{submitError}</strong>}
                     <div>
                         <button type="Submit" disabled={submitting} className={classes.button}> Register </button>
+                        <span className={classes.buttonpadding}></span>
                         <button type="button" disabled={pristine || submitting} className={classes.button} onClick={form.reset}>Clear Values</button>
                     </div>
                 </form>

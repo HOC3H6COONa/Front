@@ -16,6 +16,8 @@ import {withRouter} from "./utilits/HOC/WithRouter";
 import EventsContainer from "./Components/Events/EventsContainer";
 import SingleEventContainer from "./Components/Events/Event/SingleEventContainer";
 import RegistrationContainer from "./Components/Registration/RegistrationContainer";
+import NewEventContainer from "./Components/Events/NewEvent/NewEventContainer";
+import EditEventContainer from "./Components/Events/EditEvent/EditEventContainer";
 
 
 
@@ -40,6 +42,8 @@ class  App extends React.Component{
                         <Route path="/Profile" element={<ProfileContainer/>}/>
                         <Route path="/Events" element={<EventsContainer/>}/>
                         <Route path="/Event/:eventId" element={<SingleEventContainer/>}/>
+                        <Route path="/Event/:eventId/Edit" element ={<EditEventContainer/>}/>
+                        <Route path="CreateEvent" element={<NewEventContainer/>}/>
                         <Route path="/Users" element={<UsersContainer/>}/>
                         <Route path="/EditProfile" element={<EditProfileContainer/>}/>
                         <Route path="/login" element={<LoginContainer/>}/>

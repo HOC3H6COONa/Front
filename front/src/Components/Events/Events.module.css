@@ -11,6 +11,9 @@
     font-size: 30px;
     font-family: "Comic Sans MS";
     white-space: nowrap;
+    background: skyblue;
+}
+.item:hover{
     background: crimson;
 }
 
@@ -119,10 +122,29 @@
     color: black;
     cursor: pointer;
     height: 50px;
-    width: 120px;
+    width: 190px;
     font-size: 25px;
     text-align: center;
     outline: none;
     border-radius: 5px;
 }
+.Button:hover {
+    background-color:Crimson;
+    transition: 0.2s;
+}
 
+.Padding{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.Input{
+    height: 25px;
+    width: 300px;
+    border-radius: 10px;
+    background: white;
+    font-size:25px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    vertical-align: middle;
+}

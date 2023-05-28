@@ -13,6 +13,17 @@ export function Input({ input, meta, ...props }) {
     );
 }
 
+export function TextArea({ input, meta, ...props }) {
+    const hasError = meta.error && meta.touched;
+    return (
+        <div >
+            <textarea className={` ${classes.formControl}  ${hasError ? classes.error : ""}`}
+                   {...input} {...props} />
+            {hasError && <span className={classes.errorSpan}>{meta.error}</span>}
+        </div>
+    );
+}
+
 
 
 export function FormSelect ({ input, ...rest }) {

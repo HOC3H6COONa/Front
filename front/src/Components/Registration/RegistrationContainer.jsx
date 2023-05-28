@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from "react-redux";
 import Registration from "./Registration";
+import {register} from "../../Redux/auth-reducer";
 
 
 
