@@ -11,7 +11,7 @@ const Header = (props) =>{
                     <span>
                         <img src ={props.image} className={classes.image}/> |
                         <NavLink to ={'/Events'}>
-                            <button  className={classes.button} onClick={props.logout} >Log out</button>
+                            <span  className={classes.loginBlock} onClick={props.logout} >LogOut</span>
                         </NavLink>
                     </span>
                     :

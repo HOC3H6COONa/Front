@@ -16,9 +16,9 @@ const Nav = (props) =>{
             <div className={classes.item}>
                 <NavLink to="/Users" className = {navData => navData.isActive ? `${classes.activeLink} ${classes.item}` : classes.item}> Users </NavLink>
             </div>
-            <div className = {classes.item}>
-                <NavLink to="/map" className = {navData => navData.isActive ? `${classes.activeLink} ${classes.item}` : classes.item}> Map </NavLink>
-            </div>
+            {/*<div className = {classes.item}>*/}
+            {/*    <NavLink to="/map" className = {navData => navData.isActive ? `${classes.activeLink} ${classes.item}` : classes.item}> Map </NavLink>*/}
+            {/*</div>*/}
         </nav>
     );
 }

@@ -107,6 +107,8 @@
 .UserName{
     vertical-align: middle;
     font-size: 30px;
+    margin-left: 8px;
+
 }
 
 .HostImage{
@@ -118,7 +120,6 @@
     padding-right: 10px;
 }
 .Button{
-    background-color: lightgray;
     color: black;
     cursor: pointer;
     height: 50px;
@@ -126,7 +127,7 @@
     font-size: 25px;
     text-align: center;
     outline: none;
-    border-radius: 5px;
+    border-radius: 15px;
 }
 .Button:hover {
     background-color:Crimson;
@@ -147,4 +148,40 @@
     padding-top: 10px;
     padding-bottom: 10px;
     vertical-align: middle;
+}
+
+.Kick{
+    color: red;
+    float: right;
+    padding-right: 15px;
+    margin-left: 8px;
+}
+.Participant {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.UserInfoWrapper {
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.customTrigger {
+    transition: transform 0.3s ease-in-out;
+}
+
+.customTrigger.collapsible-open {
+    transform: rotate(90deg);
+}
+
+@keyframes rotateTrigger {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(90deg);
+    }
 }
