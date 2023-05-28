@@ -51,3 +51,39 @@ export const getEvent =(eventId) =>async(dispatch)=>{
     dispatch(setEvent(data))
 
 }
+
+export const editEvent = (title,category,location,description,time,id) =>  async(dispatch) =>{
+    const response = await EventsApi.editEvent(title,category,location,description,time,id);
+    if (response.status === 200){
+        return response.data.id;
+    }else {
+        return 'error'
+    }
+}
+
+export const joinEvent = (id) =>  async(dispatch) =>{
+    const response = await EventsApi.joinEvent(id);
+    if (response.status !== 204) {
+        return 'error'
+    } else{
+        dispatch(getEvent(id))
+    }
+}
+
+export const quitEvent = (id) =>  async(dispatch) =>{
+    const response = await EventsApi.quitEvent(id);
+    if (response.status !== 204) {
+        return 'error'
+    } else{
+        dispatch(getEvent(id))
+    }
+}
+
+export const DeleteEvent = (id) =>  async(dispatch) =>{
+    const response = await EventsApi.deleteEvent(id);
+    if (response.status === 204){
+        return 1;
+    }else {
+        return 'error'
+    }
+}

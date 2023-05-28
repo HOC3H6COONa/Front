@@ -1,8 +1,7 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {getEvent} from "../../../Redux/SingleEvent-reducer";
+import {DeleteEvent, editEvent, getEvent} from "../../../Redux/SingleEvent-reducer";
 import EditEvent from "./EditEvent";
-import {editEvent} from "../../../Redux/eventsPage-reducer";
 import {compose} from "redux";
 import {withRouter} from "../../../utilits/HOC/WithRouter";
 
@@ -31,4 +30,4 @@ let mapStateToProps = (state) => ({
 
 export default compose(
     withRouter,
-    connect(mapStateToProps,{getEvent,editEvent}))(EditEventContainer)
+    connect(mapStateToProps,{getEvent,editEvent,DeleteEvent}))(EditEventContainer)

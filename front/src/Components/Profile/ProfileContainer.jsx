@@ -1,7 +1,7 @@
 import React from 'react';
 import Profile from "./Profile";
 import {connect} from "react-redux";
-import {getProfile,setProfile} from "../../Redux/profile-reducer";
+import {Follow, getFollowingStatus, getProfile, setProfile, Unfollow} from "../../Redux/profile-reducer";
 import {withRouter} from "../../utilits/HOC/WithRouter";
 import {compose} from "redux";
 import {withAuth} from "../../utilits/HOC/WithAuth";
@@ -61,4 +61,4 @@ let mapStateToProps = (state) => ({
 
 export default compose(
     withRouter,
-    connect(mapStateToProps,{setProfile,getProfile}))(ProfileContainer)
+    connect(mapStateToProps,{setProfile,getProfile,getFollowingStatus,Follow,Unfollow}))(ProfileContainer)

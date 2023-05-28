@@ -38,6 +38,24 @@ export const EventsApi = {
             .then(response =>{
                 return response
             })
+    },
+    joinEvent(id){
+        return instance.post(`event/${id}/participate/`)
+            .then(response=>{
+                return response
+            })
+    },
+    quitEvent(id){
+        return instance.post(`event/${id}/cancel_participation/`)
+            .then(response=>{
+                return response
+            })
+    },
+    deleteEvent(id){
+        return instance.delete(`event/${id}/delete/`)
+            .then(response=>{
+                return response
+            })
     }
 }
 

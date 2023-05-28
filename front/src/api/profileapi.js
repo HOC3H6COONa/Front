@@ -18,5 +18,23 @@ export const ProfileApi = {
                 gender:Gender,
                 birthday:Birthday
             })
-    }
+    },
+    getFollowingStatus(userId){
+        return instance.get(`/user/`+userId)
+            .then(response =>{
+                return response.data.is_following;
+        })
+    },
+    follow(userId){
+        return instance.post(`user/${userId}/follow/`,{})
+            .then(response =>{
+                return response
+            })
+    },
+    unfollow(userId){
+        return instance.post(`user/${userId}/unfollow/`,{})
+            .then(response =>{
+                return response
+            })
+    },
 }

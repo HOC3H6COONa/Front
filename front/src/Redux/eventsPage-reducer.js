@@ -56,11 +56,4 @@ export const newEvent = (title,category,location,description,time) =>  async(dis
     }
 }
 
-export const editEvent = (title,category,location,description,time,id) =>  async(dispatch) =>{
-    const response = await EventsApi.editEvent(title,category,location,description,time,id);
-    if (response.status === 201){
-        return response.data.id;
-    }else {
-        return 'error'
-    }
-}
+

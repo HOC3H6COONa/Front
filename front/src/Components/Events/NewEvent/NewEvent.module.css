@@ -51,3 +51,24 @@
     font-size:25px;
     vertical-align: top;
 }
+
+.padding{
+    padding-top:20px;
+}
+
+.deletebutton{
+    height:40px;
+    width: 360px;
+    border-radius: 15px;
+    background: crimson;
+    font-size: 20px;
+    color: white;
+}
+
+.deletebutton:hover{
+    background: red;
+}
+
+.confirmText{
+
+}

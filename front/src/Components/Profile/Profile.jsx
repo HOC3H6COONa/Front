@@ -12,6 +12,16 @@ const Profile = (props) => {
         )
     }
 
+    const Unfollow =()=>{
+        props.Unfollow(props.profile.id);
+        props.profile.is_following = false;
+    }
+
+    const Follow =()=>{
+        props.Follow(props.profile.id);
+        props.profile.is_following = true;
+    }
+
     return (
             <div>
                 <img src={props.profile.image} className={classes.img}/>
@@ -26,7 +36,9 @@ const Profile = (props) => {
                     <></>
                 }
                 {props.isAuth && props.profile.id !== props.AuthId  ?
-                    <button className={classes.button}>Follow</button>:  <></>
+                    props.profile.is_following ?
+                    <button className={classes.button} onClick={Unfollow}>Unfollow</button>:
+                    <button className={classes.button} onClick={Follow} >Follow</button>: <></>
                 }
                 </div>
             </div>

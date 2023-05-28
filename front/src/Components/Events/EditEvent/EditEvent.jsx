@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { Form, Field } from 'react-final-form'
 import {formHelpers} from "../../../utilits/validators/validators";
 import {Navigate, useNavigate} from "react-router-dom";
@@ -10,10 +10,33 @@ import {FORM_ERROR} from "final-form";
 
 const EditEvent = (props) => {
 
+    const navigate = useNavigate();
+
+    const DeleteEvent =async()=>{
+        const response = await(props.DeleteEvent(props.Event.id));
+        if (response !== 'error'){
+            navigate(`/Events/`)
+        }
+
+    }
+    const [showConfirmation, setShowConfirmation] = useState(false);
+
     return (
         <div>
             <h1>Create New Event</h1>
             <EditEventForm Event= {props.Event} editEvent={props.editEvent}/>
+            <div className={classes.padding}>
+                <button className={classes.deletebutton} onClick={() => setShowConfirmation(true)}>Delete</button>
+                {showConfirmation && (
+                    <div>
+                        <h3>Are you sure you want to delete?</h3>
+                        <span className={classes.buttonpadding}>
+                            <button onClick={DeleteEvent} className={classes.button}>Yes</button>
+                        </span>
+                        <button onClick={() => setShowConfirmation(false)} className={classes.button}>No</button>
+                    </div>
+                )}
+            </div>
         </div>
 
     )

@@ -6,6 +6,17 @@ import styles from "../../Users/users.module.css";
 
 
 export const SingleEvent = (props)=> {
+
+    console.log(props.Event.id)
+    const joinEvent =  () =>{
+        props.joinEvent(props.Event.id)
+        props.Event.is_participating = true;
+    }
+    const quitEvent =() =>{
+        props.quitEvent(props.Event.id)
+        props.Event.is_participating = false;
+    }
+
     return (
                 <div className={classes.Event}>
                     <h1>{props.Event.title}</h1>
@@ -23,10 +34,10 @@ export const SingleEvent = (props)=> {
                     <div className={classes.SingleEventItem}>Description: {props.Event.description}</div>
                     {props.Event.host.id !== props.AuthId ? props.Event.is_participating ?
                         <div className={classes.SingleEventItem}>
-                            <button className={classes.Button}>Quit</button>
+                            <button className={classes.Button} onClick={quitEvent}>Quit</button>
                         </div> :
                         <div className={classes.SingleEventItem}>
-                            <button className={classes.Button}>Join</button>
+                            <button className={classes.Button} onClick={joinEvent}>Join</button>
                         </div> :
                         <div className={classes.SingleEventItem}>
                             <NavLink to={`Edit`}>
