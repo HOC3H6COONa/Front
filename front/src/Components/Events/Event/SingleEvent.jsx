@@ -1,15 +1,21 @@
 import React, {useState} from 'react'
 import classes from '../Events.module.css'
 import Collapsible from "react-collapsible";
-import {NavLink} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import styles from "../../Users/users.module.css";
 
 
 export const SingleEvent = (props)=> {
 
+    const navigate = useNavigate();
+
     const joinEvent =  () =>{
-        props.joinEvent(props.Event.id)
-        props.Event.is_participating = true;
+        if (props.AuthId === null){
+            navigate('/Login')
+        } else {
+            props.joinEvent(props.Event.id)
+            props.Event.is_participating = true;
+        }
     }
     const quitEvent =() =>{
         props.quitEvent(props.Event.id)

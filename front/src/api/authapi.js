@@ -12,7 +12,10 @@ export const AuthApi = {
     },
 
     Login(email, password){
-        return instance.post(`auth/login/`,{email,password})
+        return DefaultInstance.post('auth/login/',{email,password})
+            .then(response =>{
+                return response
+            })
     },
 
     Register(email,image,name,gender,birthday,password){

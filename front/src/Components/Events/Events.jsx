@@ -6,7 +6,7 @@ export const Events = (props) => {
         return (
             <div>
                 <div className={classes.Padding}>
-                    <NavLink to={'/CreateEvent'} className={classes.EventLink}>
+                    <NavLink to={props.AuthId !== null ? '/CreateEvent' : '/Login'} className={classes.EventLink}>
                         <button className={classes.Button}> New Event </button>
                     </NavLink>
                 </div>

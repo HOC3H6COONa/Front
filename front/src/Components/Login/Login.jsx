@@ -4,6 +4,7 @@ import {formHelpers} from "../../utilits/validators/validators";
 import {Navigate, NavLink} from "react-router-dom";
 import classes from './Login.module.css';
 import {Input} from "../../utilits/FormControl/FormControl";
+import {FORM_ERROR} from "final-form";
 
 
 
@@ -31,7 +32,9 @@ const LoginForm = (props) => {
 
 
     const onSubmit = async (FormData) => {
-            return  await props.login(FormData.Email, FormData.Password)
+        const response =  await props.login(FormData.Email, FormData.Password)
+        if (response === 'error')
+            return {[FORM_ERROR]: "Failed to login"}
     }
 
     return (

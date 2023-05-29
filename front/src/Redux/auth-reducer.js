@@ -52,10 +52,11 @@ export const login = (email,password) =>  async(dispatch) =>{
     const response = await AuthApi.Login(email,password);
     if (response.status === 200){
         let {access} = response.data;
+        debugger;
         localStorage.setItem('token',access);
         dispatch(getAuthUserData());
     }else {
-        return {[FORM_ERROR]: "Failed to login"}
+        return 'error'
     }
 }
 /*export const login = (email,password,rememberMe) =>  (dispatch) =>{

@@ -20,7 +20,8 @@ class EventsContainer extends React.Component{
 
 let mapStateToProps = (state) =>{
     return {
-        eventsList: state.eventsPage.eventsList
+        eventsList: state.eventsPage.eventsList,
+        AuthId: state.auth.userid
     }
 }
 
