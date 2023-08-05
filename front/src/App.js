@@ -43,11 +43,11 @@ class  App extends React.Component{
                         <Route path="/Events" element={<EventsContainer/>}/>
                         <Route path="/Event/:eventId" element={<SingleEventContainer/>}/>
                         <Route path="/Event/:eventId/Edit" element ={<EditEventContainer/>}/>
-                        <Route path="CreateEvent" element={<NewEventContainer/>}/>
                         <Route path="/Users" element={<UsersContainer/>}/>
                         <Route path="/EditProfile" element={<EditProfileContainer/>}/>
                         <Route path="/login" element={<LoginContainer/>}/>
-                        <Route path="/Registration" element={<RegistrationContainer/>}/>
+                        {/*<Route path="CreateEvent" element={<NewEventContainer/>}/>*/}
+                        {/*  <Route path="/Registration" element={<RegistrationContainer/>}/>*/}
                     </Routes>
                 </div>
             </div>

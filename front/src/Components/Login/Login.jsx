@@ -5,25 +5,36 @@ import {Navigate, NavLink} from "react-router-dom";
 import classes from './Login.module.css';
 import {Input} from "../../utilits/FormControl/FormControl";
 import {FORM_ERROR} from "final-form";
+import {useState} from 'react';
+import MyModal from "../../utilits/UI/MyModal/MyModal";
+import NewEventContainer from "../Events/NewEvent/NewEventContainer";
+import Registration from "../Registration/Registration";
+import RegistrationContainer from "../Registration/RegistrationContainer";
 
 
 
 const Login = (props) => {
+
+    const [modal, setModal] = useState(false);
 
     if (props.isAuth){
         return <Navigate to={'/profile/'+ props.AuthId}/>
     }
 
     return (
-        <div>
-            <div>
+        <div className={classes.loginContainer} >
+            <div className={classes.LoginItem}>
                 <h1>Login</h1>
                 <LoginForm login={props.login}/>
             </div>
             <div className={classes.registerItem}>
-                <NavLink to="/Registration" className={classes.registerLink}> Register </NavLink>
+                <button className={classes.button} onClick={()=>setModal(true)}> Register </button>
             </div>
+            <MyModal visible={modal} setVisible={setModal}>
+                <RegistrationContainer setModal={setModal}/>
+            </MyModal>
         </div>
+
     )
 }
 

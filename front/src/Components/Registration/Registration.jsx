@@ -17,7 +17,7 @@ const Registration = (props) => {
     return (
         <div>
             <h1>Registration</h1>
-            <RegForm register={props.register}/>
+            <RegForm register={props.register} setModal={props.setModal}/>
         </div>
 
     )
@@ -33,6 +33,7 @@ const RegForm = (props) => {
             const response =  await props.register(FormData.Email, FormData.Image, FormData.Name,
                 FormData.Gender.value, FormData.Birthday, FormData.Password)
             if (!response){
+                props.setModal(false)
                 navigate("/login/")
             }
         } else {

@@ -139,17 +139,6 @@
     padding-bottom: 20px;
 }
 
-.Input{
-    height: 25px;
-    width: 300px;
-    border-radius: 10px;
-    background: white;
-    font-size:25px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    vertical-align: middle;
-}
-
 .Kick{
     color: red;
     float: right;

@@ -49,9 +49,10 @@ const EditEventForm = (props) => {
 
     const onSubmit = async (FormData) => {
         if (FormData.Category.value){
+            debugger;
             FormData.Category = FormData.Category.value;
         }
-        const response =  await props.editEvent(FormData.Title, FormData.Category.value, FormData.Location,
+        const response =  await props.editEvent(FormData.Title, FormData.Category, FormData.Location,
             FormData.Description, FormData.Time,props.Event.id)
         if (response !== 'error'){
             navigate(`/Event/${response}`)
@@ -61,9 +62,9 @@ const EditEventForm = (props) => {
     }
 
     const options = [
-        {value: 2, label:'Football'},
+        {value: 3, label:'Football'},
         {value: 1, label:'Other'},
-        {value: 3, label:'Basketball'}
+        {value: 2, label:'Basketball'}
     ]
 
     return (

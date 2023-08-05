@@ -1,28 +1,57 @@
-import React from 'react'
+import React, {useMemo, useState} from 'react'
 import classes from './Events.module.css'
-import {NavLink} from "react-router-dom";
+import {NavLink, useHistory, useNavigate} from 'react-router-dom';
+import MyInput from "../../utilits/UI/input/MyInput";
+import MyModal from "../../utilits/UI/MyModal/MyModal";
+import Nav from "../Nav/Nav";
+import NewEventContainer from "./NewEvent/NewEventContainer";
 
 export const Events = (props) => {
+
+        const [selectedSort, setSelectedSort] = useState('')
+        const [searchQuery, setSearchQuery] = useState('')
+        const [modal, setModal] = useState(false);
+        const navigate = useNavigate();
+
+
+        const sortedEvents = useMemo(()=>{
+            if (selectedSort){
+                return [...props.eventsList].sort((a, b) => a[selectedSort].localeCompare(b[selectedSort]))
+            }
+            return props.eventsList
+        },[selectedSort, props.eventsList])
+
+        const sortedAndSearchEvents = useMemo(()=>{
+            if (searchQuery) {
+                return sortedEvents.filter(e => e.title.toLowerCase().includes(searchQuery.toLowerCase().trim()))
+            }
+            return sortedEvents
+        },[searchQuery, sortedEvents])
+
+
+
         return (
             <div>
                 <div className={classes.Padding}>
-                    <NavLink to={props.AuthId !== null ? '/CreateEvent' : '/Login'} className={classes.EventLink}>
-                        <button className={classes.Button}> New Event </button>
-                    </NavLink>
+                    <button className={classes.Button}
+                            onClick={props.AuthId !== null ? ()=>setModal(true):() => navigate('/Login')}
+                    >New Event</button>
+
+                    <MyModal visible={modal} setVisible={setModal}>
+                        <NewEventContainer/>
+                    </MyModal>
                 </div>
-                {/*<div className={classes.Padding}>*/}
-                {/*    <span className={classes.eventItem}>*/}
-                {/*            <input className={classes.Input}/>*/}
-                {/*    </span>*/}
-                {/*    <span className={classes.eventItem}>*/}
-                {/*            <button className={classes.Button}> My Events </button>*/}
-                {/*    </span>*/}
-                {/*    <span className={classes.eventItem}>*/}
-                {/*            <button className={classes.Button}>Friend's Events</button>*/}
-                {/*    </span>*/}
-                {/*</div>*/}
                 <div>
-                    {props.eventsList.map(e =>
+                    <div
+                        className = {classes.Padding}>
+                        <MyInput
+                            value = {searchQuery}
+                            onChange = {e => setSearchQuery(e.target.value)}
+                            placeholder ="Find event . . ."
+                        />
+                    </div>
+                    {sortedAndSearchEvents.length ?
+                        sortedAndSearchEvents.map(e =>
                         <div key={e.id}>
                             <div>
                                 <NavLink to={`/Event/${e.id}`} className={classes.EventLink}>
@@ -36,7 +65,11 @@ export const Events = (props) => {
                                 </NavLink>
                             </div>
                         </div>
-                    )}
+                    ):
+                    <div>
+                        <h1>Events not found</h1>
+                    </div>
+                    }
                 </div>
             </div>
         )
