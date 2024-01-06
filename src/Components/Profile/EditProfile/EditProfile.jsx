@@ -1,61 +1,100 @@
 import React from 'react'
 import classes from './EditProfile.module.css'
+import {Form, Field} from 'react-final-form'
+import {FormSelect, Input} from "../../../utilits/FormControl/FormControl";
+import {formHelpers} from "../../../utilits/validators/validators";
+import {useNavigate,Navigate} from "react-router-dom";
 
-import {NavLink} from "react-router-dom";
 
 
 const EditProfile =(props) =>{
 
-    let Confirm =()=>{
-        props.Confirm();
+    if (!props.state.userid){
+        return <Navigate to={"/login"}/>
     }
-
-    let onNameChange =()=>{
-        let text = newNameElement.current.value;
-        props.updateName(text);
-    }
-    let newNameElement= React.createRef();
-
-    let onCityChange =()=>{
-        let text = newCityElement.current.value;
-        props.updateCity(text);
-    }
-    let newCityElement= React.createRef();
-
-    let onAgeChange =()=>{
-        let text = newAgeElement.current.value;
-        props.updateAge(text);
-    }
-    let newAgeElement= React.createRef();
-
-    let onGenderChange =()=>{
-        let text = newGenderElement.current.value;
-        props.updateGender(text);
-    }
-    let newGenderElement= React.createRef();
-
-
     return (
         <div className={classes.profile}>
-            <img className={classes.img} src={props.state.url}/>
-            <div className={classes.profile}>
-                <div className={classes.textarea}> URL: {props.state.url}</div>
-                <input className={classes.textarea} onChange={onNameChange} ref={newNameElement}
-                          value={props.state.EditNameText}/>
-                <input className={classes.textarea} onChange={onGenderChange} ref={newGenderElement}
-                          value={props.state.EditGenderText}/>
-                <input className={classes.textarea} onChange={onAgeChange} ref={newAgeElement}
-                          value={props.state.EditAgeText}/>
-                <input className={classes.textarea} onChange={onCityChange} ref={newCityElement}
-                          value={props.state.EditCityText}/>
-                <div className={classes.profile2}>
-                    <NavLink to={'/profile'}>
-                        <button className={classes.button} onClick={Confirm}>Confirm</button>
-                    </NavLink>
-                </div>
-            </div>
+            <img className={classes.img} src={props.state.image}/>
+            <EditProfileForm state = {props.state} editProfile={props.editProfile}/>
         </div>
     );
+}
+
+const EditProfileForm = (props) => {
+    const navigate = useNavigate();
+    const onSubmit = async(FormData) =>{
+        if (FormData.Gender.value){
+            FormData.Gender = FormData.Gender.value;
+        }
+        const response =  await props.editProfile(FormData.Image,
+            FormData.Name,
+            FormData.Gender,
+            FormData.Birthday)
+        if (!response){
+            navigate("/profile/"+props.state.userid)
+        }else {
+            return response
+        }
+    }
+
+
+    const options = [
+        {value: 'Male', label:'Male'},
+        {value: 'Female', label:'Female'}
+    ]
+
+    return (
+        <Form
+            initialValues={{
+                Image: props.state.image,
+                Name: props.state.name,
+                Gender:props.state.gender,
+                Birthday: props.state.birthday
+            }}
+            onSubmit={onSubmit}
+            render={({handleSubmit, pristine, form, submitting, invalid, submitError}) => (
+                <form onSubmit={handleSubmit}>
+                    <div className={classes.profile}>
+                        <div className={classes.item}>
+                            <label> Image URL:</label>
+                            <div>
+                                <Field name={"Image"}  autoComplete={"off"} component={Input} type={"text"} className={classes.textarea} validate={formHelpers.required}></Field>
+                            </div>
+                        </div>
+
+                        <div className={classes.item}>
+                            <label> Name </label>
+                            <div>
+                                <Field name={"Name"} autoComplete={"off"} component={Input} className={classes.textarea} validate={formHelpers.required}></Field>
+                            </div>
+                        </div>
+
+                        <div className={classes.item}>
+                            <label> Gender </label>
+                            <div>
+                                <Field name={"Gender"} component={FormSelect} className={classes.select}
+                                        placeholder = {'Пол...'}
+                                        options={options}></Field>
+                            </div>
+                        </div>
+
+                        <div className={classes.item}>
+                            <label> Birthday </label>
+                            <div>
+                                <Field name={"Birthday"} autoComplete={"off"} component={Input} className={classes.textarea}
+                                       validate={formHelpers.composeValidators(formHelpers.required,formHelpers.dateValidation)} ></Field>
+                            </div>
+                        </div>
+                        {submitError && <strong className={classes.error}>{submitError}</strong>}
+                        <div className={classes.profile2}>
+                                <button type="Submit" className={classes.button}>Confirm </button>
+                        </div>
+                    </div>
+                </form>
+            )}
+        ></Form>
+    )
+        ;
 }
 
 export default EditProfile;

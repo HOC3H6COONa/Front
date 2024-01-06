@@ -2,13 +2,34 @@
     width: 100px;
     height: 100px;
     object-fit: cover;
-    border-radius: 20px
+    border-radius: 20px;
 }
-.users{
-    padding-top: 20px;
+.userPhoto:hover {
+    cursor: pointer;
+}
+.name{
+    cursor: pointer;
     padding-left: 20px;
+    justify-content: space-between;
+    align-items: center;
+    color: black;
+}
+.link{
+    text-decoration: none;
 }
 
-.name{
-    padding-bottom: 10px;
+.userItem{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    display: flex;
+    align-items: center;
+}
+.userItem:hover{
+    background: crimson;
+}
+.Padding {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
 }

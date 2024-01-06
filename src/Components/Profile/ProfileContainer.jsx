@@ -1,16 +1,28 @@
 import React from 'react';
 import Profile from "./Profile";
 import {connect} from "react-redux";
-import {getProfile,setProfile} from "../../Redux/profile-reducer";
-import {useLocation,useParams,useNavigate} from "react-router-dom";
-
+import {Follow, getFollowingStatus, getProfile, setProfile, Unfollow} from "../../Redux/profile-reducer";
+import {withRouter} from "../../utilits/HOC/WithRouter";
+import {compose} from "redux";
+import {withAuth} from "../../utilits/HOC/WithAuth";
 
 
 class ProfileContainer extends React.Component {
 
+
     componentDidMount() {
         let userId = this.props.router.params.userId;
         this.props.getProfile(userId);
+
+    }
+
+   componentDidUpdate(prevProps,PrevState) {
+        if (prevProps.userId !== this.props.router.params.userId){
+
+      /*      console.log(prevProps.profile.id)
+            console.log(this.props.router.params.userId)*/
+         /*   this.props.getProfile(this.props.router.params.userId)*/
+        }
     }
 
     render(){
@@ -21,23 +33,32 @@ class ProfileContainer extends React.Component {
 }
 
 
-let mapStateToProps = (state) => ({
-        profile: state.profilePage.profile
+
+
+/*
+let AuthRedirectComponent = withAuth(ProfileContainer)
+
+let mapStateToPropsforNav = (state) =>({
+    isAuth: state.auth.isAuth
+
 });
 
-function withRouter(Component) {
-    function ComponentWithRouterProp(props) {
-        let location = useLocation();
-        let navigate = useNavigate();
-        let params = useParams();
-        return (
-            <Component
-                {...props}
-                router={{ location, navigate, params }}
-            />
-        );
-    }
-    return ComponentWithRouterProp;
-}
+AuthRedirectComponent = connect(mapStateToPropsforNav)(AuthRedirectComponent)
 
-export default connect(mapStateToProps,{setProfile,getProfile})(withRouter(ProfileContainer));
+*/
+
+
+
+let mapStateToProps = (state) => ({
+        profile: state.profilePage.profile,
+        AuthId: state.auth.userid,
+        isAuth: state.auth.isAuth,
+});
+
+
+
+
+
+export default compose(
+    withRouter,
+    connect(mapStateToProps,{setProfile,getProfile,getFollowingStatus,Follow,Unfollow}))(ProfileContainer)

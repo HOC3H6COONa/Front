@@ -24,3 +24,24 @@
     text-decoration: none;
 }
 
+.image{
+    width: 40px;
+    height: 52px;
+    vertical-align: middle;
+}
+
+.button{
+    vertical-align: middle;
+}
+
+.buttonLogOut{
+    text-decoration: none;
+    height:30px;
+    width: 100px;
+    border-radius: 10px;
+    background: Black;
+    color: White;
+    font-size: 15px;
+}
+
+

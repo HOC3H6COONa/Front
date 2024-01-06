@@ -1,20 +1,13 @@
 import React from 'react'
-import {updateName,Confirm,updateGender,updateCity,updateAge} from "../../../Redux/profilecEditReducer";
 import EditProfile from "./EditProfile";
-import {useNavigate} from "react-router-dom";
 import {connect} from "react-redux";
+import {editProfile} from "../../../Redux/profile-reducer";
 
 
 let mapStateToProps = (state) =>{
     return {
-        state: state.profileEdit
+        state: state.auth
     }
 }
 
-export default connect(mapStateToProps,{
-    Confirm,
-    updateName,
-    updateCity,
-    updateAge,
-    updateGender
-} )(EditProfile);
+export default connect(mapStateToProps,{editProfile} )(EditProfile);

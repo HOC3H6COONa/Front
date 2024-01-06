@@ -1,38 +1,46 @@
 import React from "react";
 import styles from './users.module.css'
 import {NavLink} from "react-router-dom";
+import classes from "./users.module.css";
+import MyInput from "../../utilits/UI/input/MyInput";
+import {useState, useMemo} from 'react'
 
 const Users = (props) => {
-        return (
-            <div className={styles.users}>
-                {props.users.map(u => <div key={u.id}>
+
+    const [searchQuery, setSearchQuery] = useState('')
+
+    const SearchUsers = useMemo(()=>{
+        if (searchQuery) {
+            return props.users.filter(e => e.name.toLowerCase().includes(searchQuery.toLowerCase().trim()))
+        }
+            return props.users
+    },[searchQuery, props.users])
+
+
+    return (<div>
+            <div
+                className={classes.Padding}>
+                <MyInput
+                    value={searchQuery}
+                    onChange={e => setSearchQuery(e.target.value)}
+                    placeholder="Найти пользователя . . ."
+                />
+            </div>
+            {SearchUsers.length ?
+                    SearchUsers.map(u => <div key={u.id}>
                 <span>
-                    <div>
-                        <NavLink to={'/profile/'+u.id}>
-                            <img src={u.image} className={styles.userPhoto}/>
-                        </NavLink>
+                    <NavLink to={'/profile/' + u.id} className={classes.link}>
+                    <div className={classes.userItem}>
+                            <img src={u.image} className={classes.userPhoto} alt="User"/>
+                            <h1 className={classes.name}> {u.name}</h1>
                     </div>
-                    <div>
-                        {u.followed ? <button onClick={() => {
-                            props.unfollow(u.id)
-                        }}> Unfollow </button> : <button onClick={() => {
-                            props.Follow(u.id)
-                        }}> Follow </button>}
-                    </div>
+                    </NavLink>
                 </span>
-                    <span>
-                    <span>
-                        <div className={styles.name}> {u.name}</div>
+                <span>
+                        <div></div>
                     </span>
-                    <span>
-                        <div>
-                            {u.age}
-                        </div>
-                    </span>
-                </span>
-                </div>)
-            }
-        </div>
-        )
+            </div>)
+            :<h1>Пользователи не найдены</h1>}
+        </div>)
 }
 export default Users
