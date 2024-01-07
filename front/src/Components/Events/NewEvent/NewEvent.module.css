@@ -1,0 +1,75 @@
+.error {
+    color:red;
+}
+.select{
+    height:50px;
+    width: 355px;
+    border-radius: 10px;
+    background: white;
+    font-size:25px;
+    padding-bottom: 20px;
+    vertical-align: middle;
+
+}
+
+.item{
+    padding-bottom: 10px;
+    width: 300px;
+}
+
+.textarea{
+    height: 25px;
+    width: 350px;
+    border-radius: 10px;
+    background: white;
+    font-size:25px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    vertical-align: middle;
+}
+.button{
+    height:40px;
+    width: 170px;
+    border-radius: 15px;
+    background: White;
+    font-size: 20px;
+}
+.button:hover {
+    background-color:Crimson;
+    transition: 0.2s;
+}
+
+.buttonpadding{
+    padding-right: 20px;
+}
+
+.DescriptionText{
+    height: 100px;
+    width: 350px;
+    border-radius: 10px;
+    color: black;
+    background: white;
+    font-size:25px;
+    vertical-align: top;
+}
+
+.padding{
+    padding-top:20px;
+}
+
+.deletebutton{
+    height:40px;
+    width: 360px;
+    border-radius: 15px;
+    background: crimson;
+    font-size: 20px;
+    color: white;
+}
+
+.deletebutton:hover{
+    background: red;
+}
+
+.confirmText{
+
+}
