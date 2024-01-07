@@ -56,6 +56,12 @@ export const EventsApi = {
             .then(response=>{
                 return response
             })
+    },
+    kickUser(eventId,userId){
+        return instance.post(`event/${eventId}/kick/${userId}/`)
+            .then(response=>{
+                return response
+            })
     }
 }
 

@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {SingleEvent} from "./SingleEvent";
 import {withRouter} from "../../../utilits/HOC/WithRouter";
 import {compose} from "redux";
-import {getEvent, joinEvent, quitEvent} from "../../../Redux/SingleEvent-reducer";
+import {getEvent, joinEvent, quitEvent,KickUser} from "../../../Redux/SingleEvent-reducer";
 
 
 
@@ -32,4 +32,4 @@ let mapStateToProps = (state) =>{
 
 export default compose(
     withRouter,
-    connect(mapStateToProps,{getEvent,joinEvent,quitEvent}))(SingleEventContainer);
+    connect(mapStateToProps,{getEvent,joinEvent,quitEvent,KickUser}))(SingleEventContainer);

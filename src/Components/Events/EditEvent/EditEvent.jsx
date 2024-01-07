@@ -12,7 +12,7 @@ const EditEvent = (props) => {
 
     const navigate = useNavigate();
 
-    const DeleteEvent =async()=>{
+    const DeleteEvent = async()=>{
         const response = await(props.DeleteEvent(props.Event.id));
         if (response !== 'error'){
             navigate(`/Events/`)

@@ -21,10 +21,11 @@ export const SingleEvent = (props)=> {
         props.quitEvent(props.Event.id)
         props.Event.is_participating = false;
     }
-    // const KickUser =()=>{
-    //     props.kickUser(props.Event.id,props.)
-    //
-    // }
+    const KickUser =(id)=>{
+        // props.KickUser(props.Event.id,id)
+        console.log(id)
+
+    }
     const [triggerText, setTriggerText] = useState('Participants'+ "⠀"+ "⠀"+ "⠀"+" "+" "+" "+" "+ "⠀"+" "+ "⠀"+" "+ "⠀"+" "+'▼');
 
     const handleCollapsibleOpen = () => {
@@ -82,7 +83,7 @@ export const SingleEvent = (props)=> {
                                         <div className={classes.UserInfoWrapper}>
                                             <span className={classes.UserName}> {u.name}</span>
                                             {props.Event.host.id === props.AuthId ?
-                                                <span className={classes.Kick}>Kick</span> :
+                                                <span className={classes.Kick} onClick={()=>KickUser(u.id)}>Kick</span> :
                                                 <></>
                                             }
                                         </div>

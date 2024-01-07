@@ -87,3 +87,12 @@ export const DeleteEvent = (id) =>  async(dispatch) =>{
         return 'error'
     }
 }
+
+export const KickUser = (eventId,userId) => async(dispatch) =>{
+    const response = await EventsApi.kickUser(eventId,userId);
+    if (response.status !== 204){
+        return 'error'
+    } else {
+        dispatch(getEvent(eventId))
+    }
+}
