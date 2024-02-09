@@ -1,5 +1,6 @@
 import {instance} from "./AxiosInstances/axiosInstance";
 import {DefaultInstance} from "./AxiosInstances/DefaultInstance";
+import axios from "axios";
 
 
 
@@ -23,7 +24,7 @@ export const AuthApi = {
     },
 
     Logout(){
-        return instance.delete(`login/`)
+        return axios.post(`http://127.0.0.1:8000/auth/logout/`)
     },
 
 }

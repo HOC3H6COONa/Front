@@ -15,14 +15,14 @@ if (localStorage.getItem('token')) {
 
 export const EventsApi = {
     getEvents() {
-        return DefaultInstance.get('event/')
+        return instance.get('event/')
             .then(response => {
                 return response.data;
             })
     },
 
     getEvent(eventId) {
-        return DefaultInstance.get('event/'+eventId)
+        return instance.get('event/'+eventId)
             .then(response =>{
                 return response.data
             })

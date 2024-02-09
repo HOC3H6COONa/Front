@@ -4,8 +4,6 @@ import {Route, Routes } from "react-router-dom";
 import Map from "./Components/Map/Map";
 import EditProfileContainer from "./Components/Profile/EditProfile/EditProfileContainer";
 import ProfileContainer from "./Components/Profile/ProfileContainer";
-import HeaderContainer from "./Components/Header/HeaderContainer";
-import UsersContainer from "./Components/Users/UsersContainer";
 import LoginContainer from "./Components/Login/LoginContainer";
 import NavContainer from "./Components/Nav/NavContainer";
 import {connect} from "react-redux";
@@ -15,9 +13,9 @@ import {compose} from "redux";
 import {withRouter} from "./utilits/HOC/WithRouter";
 import EventsContainer from "./Components/Events/EventsContainer";
 import SingleEventContainer from "./Components/Events/Event/SingleEventContainer";
-import RegistrationContainer from "./Components/Registration/RegistrationContainer";
-import NewEventContainer from "./Components/Events/NewEvent/NewEventContainer";
 import EditEventContainer from "./Components/Events/EditEvent/EditEventContainer";
+import Users from "./Components/Users/Users";
+import Header from "./Components/Header/Header";
 
 
 
@@ -33,7 +31,7 @@ class  App extends React.Component{
     }*/
         return (
             <div className={'APP'}>
-                <HeaderContainer/>
+                <Header/>
                 <NavContainer/>
                 <div className={'AppContent'}>
                     <Routes>
@@ -43,11 +41,9 @@ class  App extends React.Component{
                         <Route path="/Events" element={<EventsContainer/>}/>
                         <Route path="/Event/:eventId" element={<SingleEventContainer/>}/>
                         <Route path="/Event/:eventId/Edit" element ={<EditEventContainer/>}/>
-                        <Route path="/Users" element={<UsersContainer/>}/>
+                        <Route path="/Users" element={<Users/>}/>
                         <Route path="/EditProfile" element={<EditProfileContainer/>}/>
                         <Route path="/login" element={<LoginContainer/>}/>
-                        {/*<Route path="CreateEvent" element={<NewEventContainer/>}/>*/}
-                        {/*  <Route path="/Registration" element={<RegistrationContainer/>}/>*/}
                     </Routes>
                 </div>
             </div>
@@ -63,7 +59,3 @@ export default compose(
     withRouter,
     connect(mapStateToProps,{initialiseApp}))(App)
 
-/*
-useEffect(( ) => {
-    props.initializeApp();
-}, [ ] )*/

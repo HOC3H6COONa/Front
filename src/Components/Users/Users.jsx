@@ -1,20 +1,37 @@
-import React from "react";
+import React, {useEffect} from "react";
 import styles from './users.module.css'
 import {NavLink} from "react-router-dom";
 import classes from "./users.module.css";
 import MyInput from "../../utilits/UI/input/MyInput";
 import {useState, useMemo} from 'react'
+import {UsersApi} from "../../api/usersapi";
+import {useSelector,useDispatch} from "react-redux";
+import {getUsers} from "../../Redux/users-reducer";
 
 const Users = (props) => {
+
+    const [usersData, setUsersData] = useState({})
+
+    const users = useSelector((state)=>(state.usersPage.users))
+
+    const dispatch = useDispatch();
+
+    useEffect(()=>{
+        const fetchUsers = async()=> {
+            dispatch(getUsers())
+            setUsersData(users)
+        }
+        fetchUsers()
+    },[dispatch])
 
     const [searchQuery, setSearchQuery] = useState('')
 
     const SearchUsers = useMemo(()=>{
         if (searchQuery) {
-            return props.users.filter(e => e.name.toLowerCase().includes(searchQuery.toLowerCase().trim()))
+            return usersData.filter(e => e.name.toLowerCase().includes(searchQuery.toLowerCase().trim()))
         }
-            return props.users
-    },[searchQuery, props.users])
+            return usersData
+    },[searchQuery, usersData])
 
 
     return (<div>

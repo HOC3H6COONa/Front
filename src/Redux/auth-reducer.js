@@ -72,9 +72,14 @@ export const login = (email,password) =>  async(dispatch) =>{
             })
 }*/
 
-export const logout = () => (dispatch) => {
-    localStorage.removeItem('token')
-    dispatch(setAuthUserData(null, null, null, null, false));
+export const logout = () => async(dispatch) => {
+    const response = await AuthApi.Logout();
+    if (response.status === 200){
+        // localStorage.removeItem('token')
+        dispatch(setAuthUserData(null, null, null, null, null, null,false));
+    }else {
+        return 'error'
+    }
 }
 
 
