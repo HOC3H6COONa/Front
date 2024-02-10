@@ -1,21 +1,56 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import classes from './EditProfile.module.css'
 import {Form, Field} from 'react-final-form'
 import {FormSelect, Input} from "../../../utilits/FormControl/FormControl";
 import {formHelpers} from "../../../utilits/validators/validators";
 import {useNavigate,Navigate} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {Preloader} from "../../../utilits/Preloader";
+import {editProfile} from "../../../Redux/profile-reducer";
+
 
 
 
 const EditProfile =(props) =>{
 
-    if (!props.state.userid){
+    const [authLoaded, setAuthLoaded] = useState(false);
+    const [AuthData,setAuthData] = useState({})
+    const dispatch = useDispatch();
+    const {birthday,email,gender,userid,image,name,isAuth} = useSelector((state)=>({
+        birthday: state.auth.birthday,
+        email: state.auth.email,
+        gender: state.auth.gender,
+        userid: state.auth.userid,
+        image: state.auth.image,
+        name: state.auth.name,
+        isAuth: state.auth.name
+    }))
+
+
+
+    useEffect(()=>{
+        setAuthData({birthday,email,gender,userid,image,name,isAuth})
+        setAuthLoaded(true)
+    },[isAuth,userid])
+
+    const handleEdit = (image,name,gender,birthday) =>{
+        dispatch(editProfile(image,name,gender,birthday))
+    }
+
+    if (!authLoaded) {
+        return <Preloader/>;
+    }
+
+
+
+    if (!AuthData.userid){
+        debugger;
         return <Navigate to={"/login"}/>
     }
     return (
         <div className={classes.profile}>
-            <img className={classes.img} src={props.state.image}/>
-            <EditProfileForm state = {props.state} editProfile={props.editProfile}/>
+            <img className={classes.img} src={AuthData.image}/>
+            <EditProfileForm state = {AuthData} editProfile={handleEdit}/>
         </div>
     );
 }
@@ -26,7 +61,8 @@ const EditProfileForm = (props) => {
         if (FormData.Gender.value){
             FormData.Gender = FormData.Gender.value;
         }
-        const response =  await props.editProfile(FormData.Image,
+        const response =  await props.editProfile(
+            FormData.Image,
             FormData.Name,
             FormData.Gender,
             FormData.Birthday)

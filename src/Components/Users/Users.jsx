@@ -1,10 +1,8 @@
 import React, {useEffect} from "react";
-import styles from './users.module.css'
 import {NavLink} from "react-router-dom";
 import classes from "./users.module.css";
 import MyInput from "../../utilits/UI/input/MyInput";
 import {useState, useMemo} from 'react'
-import {UsersApi} from "../../api/usersapi";
 import {useSelector,useDispatch} from "react-redux";
 import {getUsers} from "../../Redux/users-reducer";
 
@@ -18,7 +16,7 @@ const Users = (props) => {
 
     useEffect(()=>{
         const fetchUsers = async()=> {
-            dispatch(getUsers())
+            await dispatch(getUsers())
             setUsersData(users)
         }
         fetchUsers()

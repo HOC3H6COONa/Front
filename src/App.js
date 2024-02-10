@@ -2,10 +2,6 @@ import React from 'react'
 import './App.css';
 import {Route, Routes } from "react-router-dom";
 import Map from "./Components/Map/Map";
-import EditProfileContainer from "./Components/Profile/EditProfile/EditProfileContainer";
-import ProfileContainer from "./Components/Profile/ProfileContainer";
-import LoginContainer from "./Components/Login/LoginContainer";
-import NavContainer from "./Components/Nav/NavContainer";
 import {connect} from "react-redux";
 import {initialiseApp} from "./Redux/app-reducer";
 import {Preloader} from "./utilits/Preloader";
@@ -16,6 +12,10 @@ import SingleEventContainer from "./Components/Events/Event/SingleEventContainer
 import EditEventContainer from "./Components/Events/EditEvent/EditEventContainer";
 import Users from "./Components/Users/Users";
 import Header from "./Components/Header/Header";
+import Nav from "./Components/Nav/Nav";
+import Login from "./Components/Login/Login";
+import Profile from "./Components/Profile/Profile";
+import EditProfile from "./Components/Profile/EditProfile/EditProfile";
 
 
 
@@ -32,18 +32,18 @@ class  App extends React.Component{
         return (
             <div className={'APP'}>
                 <Header/>
-                <NavContainer/>
+                <Nav/>
                 <div className={'AppContent'}>
                     <Routes>
                         <Route path="/Map" element={<Map/>}/>
-                        <Route path="/Profile/:userId" element={<ProfileContainer/>}/>
-                        <Route path="/Profile" element={<ProfileContainer/>}/>
+                        <Route path="/Profile/:userId" element={<Profile/>}/>
+                        <Route path="/Profile" element={<Profile/>}/>
                         <Route path="/Events" element={<EventsContainer/>}/>
                         <Route path="/Event/:eventId" element={<SingleEventContainer/>}/>
                         <Route path="/Event/:eventId/Edit" element ={<EditEventContainer/>}/>
                         <Route path="/Users" element={<Users/>}/>
-                        <Route path="/EditProfile" element={<EditProfileContainer/>}/>
-                        <Route path="/login" element={<LoginContainer/>}/>
+                        <Route path="/EditProfile" element={<EditProfile/>}/>
+                        <Route path="/login" element={<Login/>}/>
                     </Routes>
                 </div>
             </div>

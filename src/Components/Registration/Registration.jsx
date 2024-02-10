@@ -5,19 +5,33 @@ import {Navigate, useNavigate} from "react-router-dom";
 import classes from "./Registration.module.css";
 import {FormSelect, Input} from "../../utilits/FormControl/FormControl";
 import {FORM_ERROR} from "final-form";
+import {useDispatch, useSelector} from "react-redux";
+import {register} from "../../Redux/auth-reducer";
 
 
 
 const Registration = (props) => {
 
-     if (props.isAuth){
-        return <Navigate to={'/profile/'+ props.AuthId}/>
+    const {AuthId,isAuth} = useSelector((state)=>({
+        AuthId: state.auth.userid,
+        isAuth: state.auth.isAuth,
+    }));
+
+    const dispatch = useDispatch();
+
+    const handleRegister =(email,image,name,gender,birthday,password) =>{
+        dispatch(register(email,image,name,gender,birthday,password))
+    }
+
+
+     if (isAuth){
+        return <Navigate to={'/profile/'+ AuthId}/>
     }
 
     return (
         <div>
             <h1>Registration</h1>
-            <RegForm register={props.register} setModal={props.setModal}/>
+            <RegForm register={handleRegister} setModal={props.setModal}/>
         </div>
 
     )

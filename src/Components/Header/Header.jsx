@@ -25,10 +25,7 @@ const Header = (props) =>{
 
 
     useEffect(()=>{
-        const fetchUserData = async()=> {
             setUsersData({isAuth,image,name})
-        }
-        fetchUserData()
     },[isAuth,image,name])
 
     return(

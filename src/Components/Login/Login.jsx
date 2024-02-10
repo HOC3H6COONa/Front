@@ -9,7 +9,10 @@ import {useState} from 'react';
 import MyModal from "../../utilits/UI/MyModal/MyModal";
 import NewEventContainer from "../Events/NewEvent/NewEventContainer";
 import Registration from "../Registration/Registration";
-import RegistrationContainer from "../Registration/RegistrationContainer";
+import {useDispatch, useSelector} from "react-redux";
+import {login} from "../../Redux/auth-reducer";
+
+
 
 
 
@@ -17,21 +20,32 @@ const Login = (props) => {
 
     const [modal, setModal] = useState(false);
 
-    if (props.isAuth){
-        return <Navigate to={'/profile/'+ props.AuthId}/>
+    const {AuthId,isAuth} = useSelector((state)=>({
+        AuthId: state.auth.userid,
+        isAuth: state.auth.isAuth,
+    }));
+
+    const dispatch = useDispatch();
+
+    const handleLogin =(email,password) =>{
+        dispatch(login(email,password))
+    }
+
+    if (isAuth){
+        return <Navigate to={'/profile/'+ AuthId}/>
     }
 
     return (
         <div className={classes.loginContainer} >
             <div className={classes.LoginItem}>
                 <h1>Login</h1>
-                <LoginForm login={props.login}/>
+                <LoginForm login={handleLogin}/>
             </div>
             <div className={classes.registerItem}>
                 <button className={classes.button} onClick={()=>setModal(true)}> Register </button>
             </div>
             <MyModal visible={modal} setVisible={setModal}>
-                <RegistrationContainer setModal={setModal}/>
+                <Registration setModal={setModal}/>
             </MyModal>
         </div>
 
