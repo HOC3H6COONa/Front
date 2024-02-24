@@ -13,7 +13,8 @@ let initialState = {
             image:null,
             gender:null,
             age: null,
-            is_following:false
+            is_following:false,
+            description:null
         }
 }
 
@@ -42,16 +43,6 @@ export const getProfile = (userId) => {
     }
 }
 
-export const editProfile = (Image,Name,Gender,Birthday) => async(dispatch) =>{
-    const response = await ProfileApi.editProfile(Image,Name,Gender,Birthday);
-    if (response.status === 200){
-        dispatch(getAuthUserData());
-        return 0;
-    }else{
-        return {[FORM_ERROR]: "Failed to Edit Profile"}
-    }
-
-}
 
 export const getFollowingStatus = (userId) => {
     return (dispatch) =>{

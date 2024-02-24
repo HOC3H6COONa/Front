@@ -3,10 +3,9 @@
 
   grid-template-areas:
     "header header header"
-    "n c c"
     "n c c";
-  grid-template-rows: 60px 910px 1fr ;
-  grid-template-columns: 2fr 10fr 2fr;
+  grid-template-rows: 60px auto;
+  grid-template-columns: 2fr 17fr 2fr;
   /*grid-gap: 10px;*/
 }
 .AppContent{

@@ -64,6 +64,7 @@ const Profile = (props) => {
                 <div className={classes.text}> Имя: {profile.profileData.name}</div>
                 <div className={classes.text}> Пол: {profile.profileData.gender} </div>
                 <div className={classes.text}> Возраст: {profile.profileData.age} </div>
+                <div className={classes.text}> Обо мне: {profile.profileData.description} </div>
             <div className={classes.profile}>
                 {profile.profileData.id === profile.AuthId ?
                     <NavLink to={'/EditProfile'}>

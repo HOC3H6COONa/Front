@@ -23,6 +23,8 @@ let initialState ={
             location: null,
             time: null,
             is_participating: null,
+            latitude: null,
+            longitude: null,
         }
     ]
 }
@@ -47,8 +49,8 @@ export const getEvents =() => async (dispatch) => {
     dispatch(setEvents(data))
 }
 
-export const newEvent = (title,category,location,description,time) =>  async(dispatch) =>{
-    const response = await EventsApi.NewEvent(title,category,location,description,time);
+export const newEvent = (title,category,location,description,time,latitude,longitude) =>  async(dispatch) =>{
+    const response = await EventsApi.NewEvent(title,category,location,description,time,latitude,longitude);
     if (response.status === 201){
         return response.data.id;
     }else {

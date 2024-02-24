@@ -12,6 +12,19 @@ export const AuthApi = {
             });
     },
 
+    editProfile(Image,Name,Gender,Birthday,Description){
+        return instance.patch('auth/update_user_data/',
+            {
+                image:Image,
+                name: Name,
+                gender:Gender,
+                birthday:Birthday,
+                description:Description,
+            }).then(response=>{
+                return response
+        })
+    },
+
     Login(email, password){
         return DefaultInstance.post('auth/login/',{email,password})
             .then(response =>{

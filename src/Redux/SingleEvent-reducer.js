@@ -28,7 +28,9 @@ let initialStateEvent ={
             location: null,
             description: null,
             time: null,
-            is_participating: null
+            is_participating: null,
+            latitude: null,
+            longitude: null,
         }
 }
 
@@ -52,8 +54,8 @@ export const getEvent =(eventId) =>async(dispatch)=>{
 
 }
 
-export const editEvent = (title,category,location,description,time,id) =>  async(dispatch) =>{
-    const response = await EventsApi.editEvent(title,category,location,description,time,id);
+export const editEvent = (title,category,location,description,time,id,latitude,longitude) =>  async(dispatch) =>{
+    const response = await EventsApi.editEvent(title,category,location,description,time,id,latitude,longitude);
     if (response.status === 200){
         return response.data.id;
     }else {

@@ -1,6 +1,6 @@
 import React, {useMemo, useState} from 'react'
 import classes from './Events.module.css'
-import {NavLink, useHistory, useNavigate} from 'react-router-dom';
+import {NavLink, useNavigate} from 'react-router-dom';
 import MyInput from "../../utilits/UI/input/MyInput";
 import MyModal from "../../utilits/UI/MyModal/MyModal";
 import Nav from "../Nav/Nav";

@@ -1,5 +1,6 @@
 import {AuthApi} from "../api/authapi";
 import {FORM_ERROR} from "final-form";
+import {ProfileApi} from "../api/profileapi";
 
 
 
@@ -13,6 +14,7 @@ let initialState = {
     image: null,
     name: null,
     isAuth: false,
+    description: null,
 };
 
 const authReducer = (state = initialState, action) => {
@@ -28,14 +30,30 @@ const authReducer = (state = initialState, action) => {
     }
 
 
-export const setAuthUserData = (birthday,email,gender,userid,image,name,isAuth) => ({type: SET_USER_DATA, data: {birthday, email, gender,userid,image,name,isAuth}})
+export const setAuthUserData = (birthday,email,gender,userid,image,name,isAuth,description) =>
+    ({type: SET_USER_DATA, data: {birthday, email, gender,userid,image,name,isAuth,description}})
+
 
 export const getAuthUserData = () => async(dispatch)=>{
     const response =  await AuthApi.getAuth();
             if (response.status === 200){
-                let {birthday, email ,gender,id,image,name} = response.data;
-                dispatch(setAuthUserData(birthday, email ,gender, id,image,name,true));
+                let {birthday, email ,gender,id,image,name,description} = response.data;
+                dispatch(setAuthUserData(birthday, email ,gender, id,image,name,true,description));
             }
+}
+
+
+export const editProfile = (Image,Name,Gender,Birthday,Description) => async(dispatch) =>{
+    const response = await AuthApi.editProfile(Image,Name,Gender,Birthday,Description);
+    if (response.status === 200){
+        console.log(response)
+        // dispatch(getAuthUserData());
+        let {birthday, email ,gender,id,image,name,description} = response.data;
+        dispatch(setAuthUserData(birthday, email ,gender, id,image,name,description));
+    }else{
+        return {[FORM_ERROR]: "Failed to Edit Profile"}
+    }
+
 }
 
 
@@ -47,6 +65,9 @@ export const register = (email,image,name,gender,birthday,password) =>  async(di
         return {[FORM_ERROR]: "Failed to register"}
     }
 }
+
+
+
 
 export const login = (email,password) =>  async(dispatch) =>{
     const response = await AuthApi.Login(email,password);
@@ -75,8 +96,8 @@ export const login = (email,password) =>  async(dispatch) =>{
 export const logout = () => async(dispatch) => {
     const response = await AuthApi.Logout();
     if (response.status === 200){
-        // localStorage.removeItem('token')
-        dispatch(setAuthUserData(null, null, null, null, null, null,false));
+        localStorage.removeItem('token')
+        dispatch(setAuthUserData(null, null, null, null, null, null,false, false));
     }else {
         return 'error'
     }

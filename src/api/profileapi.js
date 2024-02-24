@@ -10,15 +10,6 @@ export const ProfileApi = {
             });
     },
 
-    editProfile(Image,Name,Gender,Birthday){
-        return instance.patch('auth/update_user_data/',
-            {
-                image:Image,
-                name: Name,
-                gender:Gender,
-                birthday:Birthday
-            })
-    },
     getFollowingStatus(userId){
         return instance.get(`/user/`+userId)
             .then(response =>{

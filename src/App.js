@@ -30,11 +30,12 @@ class  App extends React.Component{
         return <Preloader/>
     }*/
         return (
-            <div className={'APP'}>
+            <div className={'APP'} style={{backgroundColor: "whitesmoke",height:'100vh'}}>
                 <Header/>
                 <Nav/>
                 <div className={'AppContent'}>
                     <Routes>
+                        <Route path="/login" element={<Login/>}/>
                         <Route path="/Map" element={<Map/>}/>
                         <Route path="/Profile/:userId" element={<Profile/>}/>
                         <Route path="/Profile" element={<Profile/>}/>
@@ -43,7 +44,6 @@ class  App extends React.Component{
                         <Route path="/Event/:eventId/Edit" element ={<EditEventContainer/>}/>
                         <Route path="/Users" element={<Users/>}/>
                         <Route path="/EditProfile" element={<EditProfile/>}/>
-                        <Route path="/login" element={<Login/>}/>
                     </Routes>
                 </div>
             </div>
