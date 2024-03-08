@@ -174,3 +174,9 @@
         transform: rotate(90deg);
     }
 }
+
+.MapStyling {
+    height: 200px;
+    width: 500px;
+
+}

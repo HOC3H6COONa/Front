@@ -1,25 +1,59 @@
-import React, {useState} from 'react'
+import React, {useState,useEffect} from 'react'
 import classes from '../Events.module.css'
 import Collapsible from "react-collapsible";
-import {NavLink, useNavigate} from "react-router-dom";
+import {NavLink, useNavigate, useParams} from "react-router-dom";
 import styles from "../../Users/users.module.css";
+import {MapContainer, Marker, Popup, TileLayer} from "react-leaflet";
+import L from "leaflet";
+import markerIcon from "C:/Users/79806/WebstormProjects/Front/front/src/utilits/UI/marker-icon.png";
+import {useDispatch, useSelector} from "react-redux";
+import {getEvent, joinEvent, quitEvent} from "../../../Redux/SingleEvent-reducer";
+import {Preloader} from "../../../utilits/Preloader";
 
 
 export const SingleEvent = (props)=> {
 
+    const dispatch = useDispatch();
+
+    const params = useParams()
+
+    const eventId = params.eventId
+
+    const [event, setEvent] = useState({})
+
+    const {eventData, AuthId, isAuth} = useSelector((state)=>({
+        eventData: state.SingleEvent.Event,
+        AuthId: state.auth.userid,
+        isAuth: state.auth.isAuth,
+    }))
+
+
+    useEffect(()=> {
+        const fetchEvent = async () => {
+            await dispatch(getEvent(eventId))
+        }
+        fetchEvent()
+    },[dispatch,eventId]);
+
+
+    useEffect(()=>{
+        setEvent({eventData,AuthId,isAuth})
+    },[eventData, AuthId, isAuth, eventId])
+
+
     const navigate = useNavigate();
 
-    const joinEvent =  () =>{
-        if (props.AuthId === null){
+    const JoinEvent =  () =>{
+        if (event.AuthId === null){
             navigate('/Login')
         } else {
-            props.joinEvent(props.Event.id)
-            props.Event.is_participating = true;
+            dispatch(joinEvent(event.eventData.id));
+            event.eventData.Event.is_participating = true;
         }
     }
-    const quitEvent =() =>{
-        props.quitEvent(props.Event.id)
-        props.Event.is_participating = false;
+    const QuitEvent =() =>{
+        dispatch(quitEvent(event.eventData.id))
+        event.eventData.Event.is_participating = false;
     }
     const KickUser =(id)=>{
         // props.KickUser(props.Event.id,id)
@@ -35,63 +69,94 @@ export const SingleEvent = (props)=> {
     const handleCollapsibleClose = () => {
         setTriggerText('Participants'+ "⠀"+ "⠀"+ "⠀"+" "+" "+" "+" "+ "⠀"+" "+ "⠀"+" "+ "⠀"+" "+'▼');
     }
-    return (
-                <div className={classes.Event}>
-                    <h1>{props.Event.title}</h1>
-                    <div className={classes.SingleEventItem}>Activity: {props.Event.category === null ? 'N/A': props.Event.category.title}</div>
-                    <div className={classes.SingleEventItem}>Host:
-                        <NavLink to={`/profile/${props.Event.host.id}`} className={classes.SingleEventLink} >
+
+    const customMarkerIcon = L.icon({
+        iconUrl: markerIcon,
+        iconSize: [45, 45],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+    });
+
+    if (!event.eventData){
+        return(
+            <Preloader/>
+        )
+    }
+
+    if (event.eventData.latitude) {
+        return (
+            <div className={classes.Event}>
+                <h1>{event.eventData.title}</h1>
+                <div
+                    className={classes.SingleEventItem}>Activity: {event.eventData.category === null ? 'N/A' : event.eventData.category.title}</div>
+                <div className={classes.SingleEventItem}>Host:
+                    <NavLink to={`/profile/${event.eventData.host.id}`} className={classes.SingleEventLink}>
                             <span>
-                                <img src ={props.Event.host.image} className={classes.HostImage}/>
-                                <span>{props.Event.host.name}</span>
+                                <img src={event.eventData.host.image} className={classes.HostImage}/>
+                                <span>{event.eventData.host.name}</span>
                             </span>
-                            </NavLink>
-                    </div>
-                    <div className={classes.SingleEventItem}>Address: {props.Event.location}</div>
-                    <div className={classes.SingleEventItem}>Time: {props.Event.time}</div>
-                    <div className={classes.SingleEventItem}>Description: {props.Event.description}</div>
-                    {props.Event.host.id !== props.AuthId ? props.Event.is_participating ?
-                        <div className={classes.SingleEventItem}>
-                            <button className={classes.Button} onClick={quitEvent}>Quit</button>
-                        </div> :
-                        <div className={classes.SingleEventItem}>
-                            <button className={classes.Button} onClick={joinEvent}>Join</button>
-                        </div> :
-                        <div className={classes.SingleEventItem}>
-                            <NavLink to={`Edit`}>
-                                <button className={classes.Button}>Edit Event</button>
-                            </NavLink>
-                        </div>
-
-                    }
-                    <div>
-                        <Collapsible
-                            transitionCloseTime={200}
-                            className={classes.Collapsible}
-                            openedClassName={classes.CollapsibleActive}
-                            contentInnerClassName={classes.CollapsibleInner}
-                            trigger={triggerText}
-                            onOpen={handleCollapsibleOpen}
-                            onClose={handleCollapsibleClose}
-                            >
-                            <div>
-                                {props.Event.participants.map(u =>
-                                    <div key={u.id} className={classes.Participant}>
-                                        <NavLink to={'/profile/' + u.id}>
-                                            <img src={u.image} className={classes.UserImage}/>
-                                        </NavLink>
-                                        <div className={classes.UserInfoWrapper}>
-                                            <span className={classes.UserName}> {u.name}</span>
-                                            {props.Event.host.id === props.AuthId ?
-                                                <span className={classes.Kick} onClick={()=>KickUser(u.id)}>Kick</span> :
-                                                <></>
-                                            }
-                                        </div>
-                                    </div>)}
-                            </div>
-                        </Collapsible>
-                    </div>
+                    </NavLink>
                 </div>
-    )
+                <div className={classes.SingleEventItem}>Address: {event.eventData.location}</div>
+                <div className={classes.SingleEventItem}>Time: {event.eventData.time}</div>
+                <div className={classes.SingleEventItem}>Description: {event.eventData.description}</div>
+                <div className="MapStyling">
+                    <MapContainer center={[eventData.latitude,eventData.longitude]} zoom={12} style={{height: '200px', width: '500px'}} bubblingMouseEvents={true}>
+                        <TileLayer url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png' attribution=''/>
+                        {event.eventData && (
+                            <div>
+                                {event.eventData.latitude && event.eventData.longitude && (
+                                    <Marker position={[event.eventData.latitude, event.eventData.longitude]}
+                                            eventPropagationTo="container" icon={customMarkerIcon}>
+                                        <Popup/>
+                                    </Marker>
+                                )}
+                            </div>
+                        )}
+                    </MapContainer>
+                </div>
+                {event.eventData.host.id !== event.AuthId ? event.eventData.is_participating ?
+                        <div className={classes.SingleEventItem}>
+                            <button className={classes.Button} onClick={QuitEvent}>Quit</button>
+                        </div> :
+                        <div className={classes.SingleEventItem}>
+                            <button className={classes.Button} onClick={JoinEvent}>Join</button>
+                        </div> :
+                    <div className={classes.SingleEventItem}>
+                        <NavLink to={`Edit`}>
+                            <button className={classes.Button}>Edit Event</button>
+                        </NavLink>
+                    </div>
 
+                }
+                <div>
+                    <Collapsible
+                        transitionCloseTime={200}
+                        className={classes.Collapsible}
+                        openedClassName={classes.CollapsibleActive}
+                        contentInnerClassName={classes.CollapsibleInner}
+                        trigger={triggerText}
+                        onOpen={handleCollapsibleOpen}
+                        onClose={handleCollapsibleClose}
+                    >
+                        <div>
+                            {event.eventData.participants.map(u =>
+                                <div key={u.id} className={classes.Participant}>
+                                    <NavLink to={'/profile/' + u.id}>
+                                        <img src={u.image} className={classes.UserImage}/>
+                                    </NavLink>
+                                    <div className={classes.UserInfoWrapper}>
+                                        <span className={classes.UserName}> {u.name}</span>
+                                        {event.eventData.host.id === event.AuthId ?
+                                            <span className={classes.Kick} onClick={() => KickUser(u.id)}>Kick</span> :
+                                            <></>
+                                        }
+                                    </div>
+                                </div>)}
+                        </div>
+                    </Collapsible>
+                </div>
+            </div>
+        )
+    }
 }

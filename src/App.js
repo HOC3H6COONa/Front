@@ -8,7 +8,6 @@ import {Preloader} from "./utilits/Preloader";
 import {compose} from "redux";
 import {withRouter} from "./utilits/HOC/WithRouter";
 import EventsContainer from "./Components/Events/EventsContainer";
-import SingleEventContainer from "./Components/Events/Event/SingleEventContainer";
 import EditEventContainer from "./Components/Events/EditEvent/EditEventContainer";
 import Users from "./Components/Users/Users";
 import Header from "./Components/Header/Header";
@@ -16,6 +15,7 @@ import Nav from "./Components/Nav/Nav";
 import Login from "./Components/Login/Login";
 import Profile from "./Components/Profile/Profile";
 import EditProfile from "./Components/Profile/EditProfile/EditProfile";
+import {SingleEvent} from "./Components/Events/Event/SingleEvent";
 
 
 
@@ -40,7 +40,7 @@ class  App extends React.Component{
                         <Route path="/Profile/:userId" element={<Profile/>}/>
                         <Route path="/Profile" element={<Profile/>}/>
                         <Route path="/Events" element={<EventsContainer/>}/>
-                        <Route path="/Event/:eventId" element={<SingleEventContainer/>}/>
+                        <Route path="/Event/:eventId" element={<SingleEvent/>}/>
                         <Route path="/Event/:eventId/Edit" element ={<EditEventContainer/>}/>
                         <Route path="/Users" element={<Users/>}/>
                         <Route path="/EditProfile" element={<EditProfile/>}/>

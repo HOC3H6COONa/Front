@@ -33,10 +33,6 @@ const Map = () => {
     const center = [55.7558, 37.6173];
     const navigate = useNavigate();
 
-    const handleMarkerClick = () => {
-        navigate('/Event/2');
-    };
-
     const customMarkerIcon = L.icon({
         iconUrl: markerIcon,
         iconSize: [45, 45],
@@ -50,21 +46,23 @@ const Map = () => {
         <div>
         <MapContainer center={center} zoom={12} style={{ height: '1000px' }} bubblingMouseEvents ={true} >
             <TileLayer url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png' attribution='' />
-            {eventsData.length ?
+            {eventsData &&(
                 eventsData.map(e=>
                 <div key={e.id}>
+                    {e.latitude && e.longitude && (
                 <Marker position={[e.latitude,e.longitude]} eventPropagationTo="container" icon={customMarkerIcon}>
                     <NavLink  to={`/Event/${e.id}`}>
                     <Popup>
-                        <div onClick={handleMarkerClick}>
+                        <div>
                             {e.title} | {e.category.title}
                         </div>
                     </Popup>
                     </NavLink>
                 </Marker>
+                        )}
                 </div>
-                ):<></>
-            }
+                )
+            )}
         </MapContainer>
         </div>
     );
