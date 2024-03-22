@@ -16,6 +16,7 @@ import Login from "./Components/Login/Login";
 import Profile from "./Components/Profile/Profile";
 import EditProfile from "./Components/Profile/EditProfile/EditProfile";
 import {SingleEvent} from "./Components/Events/Event/SingleEvent";
+import NewEvent from "./Components/Events/NewEvent/NewEvent";
 
 
 
@@ -42,6 +43,7 @@ class  App extends React.Component{
                         <Route path="/Events" element={<EventsContainer/>}/>
                         <Route path="/Event/:eventId" element={<SingleEvent/>}/>
                         <Route path="/Event/:eventId/Edit" element ={<EditEventContainer/>}/>
+                        <Route path="/CreateEvent" element={<NewEvent/>}/>
                         <Route path="/Users" element={<Users/>}/>
                         <Route path="/EditProfile" element={<EditProfile/>}/>
                     </Routes>

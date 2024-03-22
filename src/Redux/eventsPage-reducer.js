@@ -52,7 +52,10 @@ export const getEvents =() => async (dispatch) => {
 export const newEvent = (title,category,location,description,time,latitude,longitude) =>  async(dispatch) =>{
     const response = await EventsApi.NewEvent(title,category,location,description,time,latitude,longitude);
     if (response.status === 201){
-        return response.data.id;
+        console.log(response)
+        debugger;
+        window.location.href = 'Event/' + response.data.id;
+        return response;
     }else {
         return 'error'
     }

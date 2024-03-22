@@ -63,7 +63,6 @@ const EditProfileForm = (props) => {
         if (FormData.Gender.value){
             FormData.Gender = FormData.Gender.value;
         }
-        console.log(FormData.Description)
         const response =  await props.editProfile(
             FormData.Image,
             FormData.Name,
@@ -71,6 +70,7 @@ const EditProfileForm = (props) => {
             FormData.Birthday,
             FormData.Description)
         if (!response){
+            debugger;
             navigate("/profile/"+props.state.userid)
         }else {
             return response

@@ -27,8 +27,8 @@ export const EventsApi = {
                 return response.data
             })
     },
-    NewEvent(title,category,location,description,time) {
-        return instance.post('event/create/',{title,category,location,description,time})
+    NewEvent(title,category,location,description,time,longitude, latitude) {
+        return instance.post('event/create/',{title,category,location,description,time,longitude, latitude})
             .then(response =>{
                 return response
             })

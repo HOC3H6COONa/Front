@@ -44,13 +44,14 @@
 }
 
 .DescriptionText{
-    height: 100px;
-    width: 350px;
+    height: 150px;
+    width: 450px;
     border-radius: 10px;
     color: black;
     background: white;
     font-size:25px;
     vertical-align: top;
+    resize: none;
 }
 
 .padding{
@@ -72,4 +73,9 @@
 
 .confirmText{
 
+}
+
+.MapStyling {
+    height: 200px;
+    width: 500px;
 }

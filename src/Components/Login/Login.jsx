@@ -7,7 +7,6 @@ import {Input} from "../../utilits/FormControl/FormControl";
 import {FORM_ERROR} from "final-form";
 import {useState} from 'react';
 import MyModal from "../../utilits/UI/MyModal/MyModal";
-import NewEventContainer from "../Events/NewEvent/NewEventContainer";
 import Registration from "../Registration/Registration";
 import {useDispatch, useSelector} from "react-redux";
 import {login} from "../../Redux/auth-reducer";

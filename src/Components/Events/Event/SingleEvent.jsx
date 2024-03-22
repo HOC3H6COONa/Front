@@ -40,7 +40,6 @@ export const SingleEvent = (props)=> {
         setEvent({eventData,AuthId,isAuth})
     },[eventData, AuthId, isAuth, eventId])
 
-
     const navigate = useNavigate();
 
     const JoinEvent =  () =>{
@@ -100,15 +99,14 @@ export const SingleEvent = (props)=> {
                 <div className={classes.SingleEventItem}>Address: {event.eventData.location}</div>
                 <div className={classes.SingleEventItem}>Time: {event.eventData.time}</div>
                 <div className={classes.SingleEventItem}>Description: {event.eventData.description}</div>
-                <div className="MapStyling">
-                    <MapContainer center={[eventData.latitude,eventData.longitude]} zoom={12} style={{height: '200px', width: '500px'}} bubblingMouseEvents={true}>
+                <div className={classes.MapStyling}>
+                    <MapContainer center={[eventData.latitude,eventData.longitude]} zoom={12} style={{height: '300px', width: '600px'}} bubblingMouseEvents={true}>
                         <TileLayer url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png' attribution=''/>
                         {event.eventData && (
                             <div>
                                 {event.eventData.latitude && event.eventData.longitude && (
                                     <Marker position={[event.eventData.latitude, event.eventData.longitude]}
                                             eventPropagationTo="container" icon={customMarkerIcon}>
-                                        <Popup/>
                                     </Marker>
                                 )}
                             </div>

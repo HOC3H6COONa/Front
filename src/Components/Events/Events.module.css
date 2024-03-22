@@ -9,9 +9,11 @@
 .item {
     padding: 20px;
     font-size: 30px;
-    font-family: "Comic Sans MS";
     white-space: nowrap;
     border: 4px solid crimson;
+    border-radius: 10px;
+    width: 75%;
+    overflow: hidden;
 }
 .item:hover{
     background: crimson;
@@ -176,7 +178,8 @@
 }
 
 .MapStyling {
-    height: 200px;
-    width: 500px;
+    height: 300px;
+    width: 600px;
+    padding-bottom:10px;
 
 }

@@ -33,14 +33,9 @@ const Profile = (props) => {
         fetchProfile()
     },[dispatch,userId]);
 
-
     useEffect(()=>{
         setProfile({profileData,AuthId,isAuth})
     },[profileData, AuthId, isAuth, userId])
-
-
-
-
 
     if (!profile.profileData){
         return(

@@ -4,13 +4,14 @@ import {NavLink, useNavigate} from 'react-router-dom';
 import MyInput from "../../utilits/UI/input/MyInput";
 import MyModal from "../../utilits/UI/MyModal/MyModal";
 import Nav from "../Nav/Nav";
-import NewEventContainer from "./NewEvent/NewEventContainer";
+import NewEvent from "./NewEvent/NewEvent";
+
 
 export const Events = (props) => {
 
         const [selectedSort, setSelectedSort] = useState('')
         const [searchQuery, setSearchQuery] = useState('')
-        const [modal, setModal] = useState(false);
+        // const [modal, setModal] = useState(false);
         const navigate = useNavigate();
 
 
@@ -34,12 +35,12 @@ export const Events = (props) => {
             <div>
                 <div className={classes.Padding}>
                     <button className={classes.Button}
-                            onClick={props.AuthId !== null ? ()=>setModal(true):() => navigate('/Login')}
+                            onClick={props.AuthId !== null ? () => navigate('/CreateEvent') :() => navigate('/Login')}
                     >New Event</button>
 
-                    <MyModal visible={modal} setVisible={setModal}>
-                        <NewEventContainer/>
-                    </MyModal>
+ {/*                   <MyModal visible={modal} setVisible={setModal}>
+                        <NewEvent/>
+                    </MyModal>*/}
                 </div>
                 <div>
                     <div
